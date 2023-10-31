@@ -6,10 +6,10 @@
  *Return:1 if a cycle is detected (there is a loop).
  * otherwise 0 if no cycle is found (no loop is present).
  */
-int check_cycle(struct listint_t *list)
+int check_cycle(listint_t *list)
 {
-	struct listint_t *slow = list;
-	struct listint_t *fast = list;
+	listint_t *slow = list;
+	listint_t *fast = list;
 
 	while (fast != NULL && fast->next != NULL)
 	{
