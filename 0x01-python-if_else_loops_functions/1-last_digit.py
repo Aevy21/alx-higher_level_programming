@@ -9,4 +9,3 @@ elif last_digit == 0:
     print(f"The last digit of {number} is {last_digit}, and is 0")
 else:
     print(f"The last digit of {number} is {last_digit}, and is not 0")
-
