@@ -7,9 +7,9 @@ if __name__ == "__main__":
 
     # Check if there are command-line arguments
     if len(sys.argv) > 1:
-        # Iterate through the command-line arguments starting from the second one
+        # Iterate through arguments starting from the second one
         for arg in sys.argv[1:]:
-            # Convert each argument to an integer and add it to the total
+            # typecast
             total += int(arg)
 
     # Print the sum of the arguments
