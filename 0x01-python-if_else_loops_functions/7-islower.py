@@ -1,6 +1,6 @@
 #!/usr/bin/python3
+
 def islower(c):
-    for char in c:
-        if not 'a' <= char <= 'z':
-            return False
-    return True
+    # Check if the ASCII value of the character
+    # is within the lowercase range
+    return ord('a') <= ord(c) <= ord('z')
