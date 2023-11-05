@@ -2,7 +2,7 @@
 
 def print_matrix_integer(matrix=[[]]):
     if not matrix or not matrix[0]:
-        print("") 
+        print("")
         # Print an empty line if matrix is empty or has empty rows
     else:
         for row in matrix:
