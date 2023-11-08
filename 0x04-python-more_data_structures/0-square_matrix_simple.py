@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 def square_matrix_simple(matrix=[]):
-    # Create an empty result matrix with the same dimensions as the input matrix
+    # Create an empty result matrix with 2D
     new_matrix = []
     for row in matrix:
         result_row = []
@@ -11,6 +11,7 @@ def square_matrix_simple(matrix=[]):
             squared_element = element ** 2
             result_row.append(squared_element)
             # Append the squared element to the result row
-        new_matrix.append(result_row)  # Append the result row to the result matrix
-    return new_matrix  # Return the result matrix
-
+        new_matrix.append(result_row)
+        # Append the result row to the result matrix
+    return new_matrix
+# Return the result matrix
