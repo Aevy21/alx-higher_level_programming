@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 def square_matrix_simple(matrix=[]):
     # Create an empty result matrix with the same dimensions as the input matrix
     new_matrix = []
