@@ -45,7 +45,7 @@ Python provides a range of inbuilt exceptions to handle different types of error
 - `TypeError`
 - `ZeroDivisionError`
 
-##Common Inbuilt Exceptions
+## Common Inbuilt Exceptions
 
 ~`ValueError`: Raised when a function receives an argument of the correct type but an inappropriate value.
 
