@@ -1,4 +1,3 @@
-```markdown
 # Exception Handling in Python
 
 ## Overview
