@@ -48,11 +48,17 @@ Python provides a range of inbuilt exceptions to handle different types of error
 ##Common Inbuilt Exceptions
 
 ~`ValueError`: Raised when a function receives an argument of the correct type but an inappropriate value.
+
 ~`TypeError`: Raised when an operation or function is applied to an object of an inappropriate type.
+
 ~`ZeroDivisionError`: Raised when division or modulo by zero is encountered.
+
 ~`FileNotFoundError`: Raised when a file or directory is requested but cannot be found.
+
 ~`IndexError`: Raised when a sequence subscript is out of range.
+
 ~`KeyError`: Raised when a dictionary key is not found.
+
 ~`AssertionError`: Raised when an assert statement fails.
 
 For a comprehensive list, refer to the [official Python documentation](https://docs.python.org/3/library/exceptions.html).
