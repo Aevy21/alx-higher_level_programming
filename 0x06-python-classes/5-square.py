@@ -60,11 +60,8 @@ def my_print(self):
 
         If the size of the square is 0, an empty line is printed instead.
         """
-        if self.size == 0:
+        if self.__size == 0:
             print()
-            return
-
-        for _ in range(self.size):
-            for _ in range(self.size):
-                print("#", end="")
-            print()
+        else:
+            for _ in range(self.__size):
+                print("#" * self.__size)
