@@ -1,20 +1,21 @@
 #!/usr/bin/python3
-"""Define a class Square."""
+"""
+    This class defines a square.
+    """
 
 
 class Square:
     """Represent a square.
 
     Attributes:
-        __size (int): The size of the square.
+        __size (int):Private instance attribute
     """
 
     def __init__(self, size=0):
         """Initialize a new Square with optional size.
 
         Args:
-            size (int, optional): The size of the square. Defaults to 0.
-
+            size ,size being an int value which is bing validated
         Raises:
             TypeError: If size is not an integer.
             ValueError: If size is less than 0.
