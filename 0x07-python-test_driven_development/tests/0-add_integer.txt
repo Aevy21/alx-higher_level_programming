@@ -15,7 +15,7 @@ Note: This function is designed to add typecasted integers and floats. Using any
 
 - TypeError: If either a or b is not an integer or float.
 
-add_integer = __import__('0-add_integer').add_integer
+>>> add_integer = __import__('0-add_integer').add_integer
 
 # Example Usage (Non-Interactive):
 
@@ -37,7 +37,7 @@ add_integer = __import__('0-add_integer').add_integer
 5
 
 >>> add_integer(-2.7, 5.3)
-2
+3
 
 >>> add_integer(True, False)
 1
