@@ -1,21 +1,25 @@
 add_integer Function Documentation
 
-**Note:** This function is designed to add typecasted integers and floats. Using any other types may result in undefined behavior.
+Note: This function is designed to add typecasted integers and floats. Using any other types may result in undefined behavior.
 
-## Parameters:
+# Parameters:
 
-- **a (int or float):** First number.
-- **b (int or float, optional):** Second number. Default is 98.
+- a (int or float):** First number.
+- b (int or float, optional):** Second number. Default is 98.
 
-## Returns:
+# Returns:
 
-- **int:** The sum of a and b, casted to an integer.
+- int: The sum of a and b, casted to an integer.
 
-## Raises:
+# Raises:
 
-- **TypeError:** If either a or b is not an integer or float.
+- TypeError: If either a or b is not an integer or float.
 
-## Example Usage (Non-Interactive):
+add_integer = __import__('0-add_integer').add_integer
+
+# Example Usage (Non-Interactive):
+
+#python3
 
 >>> add_integer(3, 5)
 8
@@ -56,7 +60,7 @@ Traceback (most recent call last):
     ...
 TypeError: a must be an integer or float
 
-## Example Usage (Interactive):
+# Example Usage (Interactive):
 
 >>> add_integer(2, b=98)
 100
