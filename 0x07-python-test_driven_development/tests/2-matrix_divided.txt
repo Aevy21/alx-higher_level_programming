@@ -11,7 +11,7 @@ Author: Avumile Ndlovu
 """
 #importing the module
 
-matrix_divided = __import__('2-matrix_divided').matrix_divided
+>>> matrix_divided = __import__('2-matrix_divided').matrix_divided
 
 >>> # Test case 1: Empty Matrix
 >>> matrix_divided([], 2)
