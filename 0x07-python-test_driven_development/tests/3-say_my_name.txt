@@ -1,0 +1,58 @@
+
+"""
+Test cases for the say_my_name function and how it is expected to produce the output
+
+using Print(a formatted message with the given first and last name.)
+
+"""
+
+>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+# Test 1
+>>> say_my_name("John", "Smith")
+John Smith$
+
+# Test 2
+>>> say_my_name("Alice")
+Alice$
+
+# Test 3
+>>> say_my_name("", "")
+$
+
+# Test 4
+>>> say_my_name("Bob")
+Bob$
+
+# Test 5
+>>> say_my_name(123, "Doe")
+Traceback (most recent call last):
+    ...
+TypeError: first_name must be a string or last_name must be a string
+
+# Test 6
+>>> say_my_name("Mário", "López")
+Mário López$
+
+# Test 7
+>>> say_my_name("  Charlie  ", " Brown ")
+  Charlie    Brown $
+
+# Test 8
+>>> say_my_name("X" * 100, "Y" * 150)
+X * 100 Y * 150 $
+
+# Test 9
+>>> say_my_name("mary", "JOHNSON")
+mary JOHNSON$
+
+# Test 10
+>>> say_my_name("David#", "$Goliath")
+David# $Goliath$
+
+# Test 11
+>>> say_my_name()
+Traceback (most recent call last):
+    ...
+TypeError: first_name must be a string or last_name must be a string
+
