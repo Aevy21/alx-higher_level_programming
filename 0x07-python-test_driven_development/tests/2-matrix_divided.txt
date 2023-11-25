@@ -1,0 +1,76 @@
+"""
+This script defines a function matrix_divided, which divides all elements
+of a matrix by a specified divisor. It includes various test cases to ensure
+the function handles different scenarios appropriately.
+
+Note:
+- matrix_divided function performs matrix division and rounds results to 2 decimal places.
+- Test cases cover edge cases to validate the function's behavior.
+
+Author: Avumile Ndlovu 
+"""
+#importing the module
+
+matrix_divided = __import__('2-matrix_divided').matrix_divided
+
+>>> # Test case 1: Empty Matrix
+>>> matrix_divided([], 2)
+Traceback (most recent call last):
+…
+# Expected output: TypeError("matrix must be a matrix (list of lists) of integers/floats")
+
+>>> # Test case 2: Empty Rows
+>>> matrix_divided([[], []], 2)
+Traceback (most recent call last):
+…
+# Expected output: TypeError("Each row of the matrix must have the same size")
+
+>>> # Test case 3: Non-Numeric Elements
+>>> matrix_divided([[1, 'a'], [3, 4]], 2)
+Traceback (most recent call last):
+…
+# Expected output: TypeError("matrix must be a matrix (list of lists) of integers/floats")
+
+>>> # Test case 4: Divisor is 0
+>>> matrix_divided([[1, 2], [3, 4]], 0)
+Traceback (most recent call last):
+…
+# Expected output: ZeroDivisionError("division by zero")
+
+>>> # Test case 5: Divisor is not a number
+>>> matrix_divided([[1, 2], [3, 4]], 'a')
+Traceback (most recent call last):
+…
+# Expected output: TypeError("div must be a number")
+
+>>> # Test case 6: Rows of Different Sizes
+>>> matrix_divided([[1, 2], [3, 4, 5]], 2)
+Traceback (most recent call last):
+…
+# Expected output: TypeError("Each row of the matrix must have the same size")
+
+>>> # Test case 7: Matrix with Integer Division Result
+>>> matrix_divided([[2, 4, 6], [8, 10, 12]], 2)
+# Expected output: [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]]
+
+>>> # Test case 8: Large Numbers
+>>> matrix_divided([[10**9, 10**6], [10**8, 10**7]], 10**5)
+# Expected output: [[10000.0, 1.0], [1000.0, 100.0]]
+
+>>> # Test case 9: Fractional Result
+>>> matrix_divided([[1, 2, 3], [4, 5, 6]], 3)
+# Expected output: [[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+
+>>> # Test case 10: Nested Lists
+>>> matrix_divided([[1, [2, 3]], [4, 5]], 2)
+Traceback (most recent call last):
+…
+# Expected output: TypeError("matrix must be a matrix (list of lists) of integers/floats")
+
+>>> # Test case 11: Floating-Point Divisor
+>>> matrix_divided([[1, 2], [3, 4]], 2.5)
+# Expected output: [[0.4, 0.8], [1.2, 1.6]]
+
+
+
+
