@@ -17,37 +17,37 @@ Author: Avumile Ndlovu
 >>> matrix_divided([], 2)
 Traceback (most recent call last):
     ...
-TypeError("matrix must be a matrix (list of lists) of integers/floats")
+TypeError: matrix must be a matrix (list of lists) of integers/floats
 
 >>> # Test case 2: Empty Rows
 >>> matrix_divided([[], []], 2)
 Traceback (most recent call last):
     ...
-TypeError("Each row of the matrix must have the same size")
+TypeError: matrix must be a matrix (list of lists) of integers/floats
 
 >>> # Test case 3: Non-Numeric Elements
 >>> matrix_divided([[1, 'a'], [3, 4]], 2)
 Traceback (most recent call last):
     ...
-TypeError("matrix must be a matrix (list of lists) of integers/floats")
+TypeError: matrix must be a matrix (list of lists) of integers/floats
 
 >>> # Test case 4: Divisor is 0
 >>> matrix_divided([[1, 2], [3, 4]], 0)
 Traceback (most recent call last):
     ...
-ZeroDivisionError("division by zero")
+ZeroDivisionError: division by zero
 
 >>> # Test case 5: Divisor is not a number
 >>> matrix_divided([[1, 2], [3, 4]], 'a')
 Traceback (most recent call last):
     ...
-TypeError("div must be a number")
+TypeError: div must be a number
 
 >>> # Test case 6: Rows of Different Sizes
 >>> matrix_divided([[1, 2], [3, 4, 5]], 2)
 Traceback (most recent call last):
     ...
-TypeError("Each row of the matrix must have the same size")
+TypeError: Each row of the matrix must have the same size
 
 >>> # Test case 7: Matrix with Integer Division Result
 >>> matrix_divided([[2, 4, 6], [8, 10, 12]], 2)
