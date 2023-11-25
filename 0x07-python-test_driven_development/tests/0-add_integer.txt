@@ -45,6 +45,9 @@ Note: This function is designed to add typecasted integers and floats. Using any
 >>> add_integer(2)
 100
 
+>>> add_integer(99999999999999999999999, 1)
+100000000000000000000000
+
 >>> add_integer(2, b="world")
 Traceback (most recent call last):
     ...
