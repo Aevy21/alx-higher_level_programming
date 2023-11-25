@@ -1,4 +1,3 @@
-
 """
 Test cases for the say_my_name function and how it is expected to produce the output
 
@@ -10,19 +9,19 @@ using Print(a formatted message with the given first and last name.)
 
 # Test 1
 >>> say_my_name("John", "Smith")
-John Smith$
+My name is John Smith$
 
 # Test 2
 >>> say_my_name("Alice")
-Alice$
+My name is Alice$
 
 # Test 3
 >>> say_my_name("", "")
-$
+My name is $
 
 # Test 4
 >>> say_my_name("Bob")
-Bob$
+My name isBob$
 
 # Test 5
 >>> say_my_name(123, "Doe")
@@ -32,15 +31,15 @@ TypeError: first_name must be a string or last_name must be a string
 
 # Test 6
 >>> say_my_name("Mário", "López")
-Mário López$
+My name is Mário López$
 
 # Test 7
 >>> say_my_name("  Charlie  ", " Brown ")
-  Charlie    Brown $
+My name is  Charlie    Brown $
 
 # Test 8
 >>> say_my_name("X" * 100, "Y" * 150)
-X * 100 Y * 150 $
+My name is X * 100 Y * 150 $
 
 # Test 9
 >>> say_my_name("mary", "JOHNSON")
@@ -48,7 +47,7 @@ mary JOHNSON$
 
 # Test 10
 >>> say_my_name("David#", "$Goliath")
-David# $Goliath$
+My name is David# $Goliath$
 
 # Test 11
 >>> say_my_name()
