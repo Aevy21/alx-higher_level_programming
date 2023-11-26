@@ -1,0 +1,47 @@
+"""
+    Test the text_indentation function with various scenarios.
+
+Author: Avumile Ndlovu
+
+"""
+
+>>>text_indentation = __import__('5-text_indentation').text_indentation
+
+# Scenario 1: Basic Usage
+>>> text = "This is a simple text. It has a question: What's next?"
+>>> text_indentation(text)
+
+
+# Scenario 2: Empty String
+>>> text = ""
+>>> text_indentation(text)
+
+
+# Scenario 3: String without Punctuation
+>>> text = "This string has no punctuation characters"
+>>> text_indentation(text)
+
+# Scenario 4: 
+>>> text = "Multiple dots... Some questions>>>text_indentation(text)
+
+# Scenario 5: Leading and Trailing Whitespace
+>>> text = "   Text with leading and trailing spaces.   "
+>>> text_indentation(text)
+
+# Scenario 6: Non-String Input
+>>>text = 123  # or any non-string input
+>>>text_indentation(text)
+
+# Scenario 7: Complex Sentences
+>>> text = "This is a sentence with multiple clauses. It contains questions: What is the first question? What is the second question? And what about the third one?"
+>>> text_indentation(text)
+
+# Scenario 8: Mix of Punctuation Characters
+>>> text = "This string has dots. It also has colons: like this one. Questions are here? What about exclamation marks!"
+>>> text_indentation(text)
+
+# Scenario 9: Long Text
+>>> text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+>>>text_indentation(text)
+
+
