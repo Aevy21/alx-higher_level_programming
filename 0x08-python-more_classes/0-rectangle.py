@@ -6,10 +6,7 @@ Note: This is an empty class Rectangle that defines a rectangle
 
 class Rectangle:
     """
-    Rectangle Class:
-
     This class defines a basic rectangle.
     It currently has no attributes or methods.
     """
-
     pass
