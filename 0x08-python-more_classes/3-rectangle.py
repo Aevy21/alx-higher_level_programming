@@ -95,5 +95,5 @@ class Rectangle:
             for _ in range(self._height):
                 rectangle_str += "#" * self._width + "\n"
 
-            return "Area: {} - Perimeter: {}\n{}".format(self.area(), self.perimeter(), rectangle_str.rstrip('\n'))
+            return "{}".format(rectangle_str.rstrip('\n'))
 
