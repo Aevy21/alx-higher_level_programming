@@ -25,7 +25,7 @@ What's next?
 This string has no punctuation characters
 
 # Scenario 4: 
->>> text = "Multiple dots... Some questions
+>>> text = "Multiple dots... Some questions"
 >>> text_indentation(text)
 Multiple dots
 Some questions
@@ -57,8 +57,7 @@ And what about the third one
 
 # Scenario 8: Mix of Punctuation Characters
 >>> text = "This string has dots. It also has colons: like this one. Questions are here? What about exclamation marks!"
->>> text_indentation(text)
-This string has dots
+>>> text_indentation(text)# This string has dots
 <BLANKLINE>
 It also has colons
 <BLANKLINE>
@@ -67,3 +66,4 @@ like this one
 Questions are here
 <BLANKLINE>
 What about exclamation marks
+
