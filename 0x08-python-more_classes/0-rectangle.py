@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """
-Note: This is an empty class Rectangle that defines a rectangle
+empty class Rectangle that defines a rectangle
 """
 
 
 class Rectangle:
     """
-    This class defines a basic rectangle.
-    It currently has no attributes or methods.
+        this is a class that defines an empty rectangle
+        the attributes and the methods will be input in the next task
     """
     pass
