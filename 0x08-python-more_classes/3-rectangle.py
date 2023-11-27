@@ -86,14 +86,14 @@ class Rectangle:
         else:
             return 0
 
-def __str__(self):
-    """Return a string representation of the rectangle."""
-    if self._width == 0 or self._height == 0:
-        return ""
-    else:
-        rectangle_str = ""
-        for _ in range(self._height):
-            rectangle_str += "#" * self._width + "\n"
+    def __str__(self):
+        """Return a string representation of the rectangle."""
+        if self._width == 0 or self._height == 0:
+            return ""
+        else:
+            rectangle_str = ""
+            for _ in range(self._height):
+                rectangle_str += "#" * self._width + "\n"
 
-        return "Area: {} - Perimeter: {}\n{}".format(self.area(), self.perimeter(), rectangle_str.rstrip('\n'))
+            return "Area: {} - Perimeter: {}\n{}".format(self.area(), self.perimeter(), rectangle_str.rstrip('\n'))
 
