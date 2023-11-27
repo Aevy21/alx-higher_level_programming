@@ -73,4 +73,8 @@ class Rectangle:
         if value < 0:
             raise ValueError("height must be >= 0")
         self._height = value
-
+        
+     def __repr__(self):
+        """Return a string representation to recreate a new instance."""
+        return "{{'_Rectangle__width': {}, '_Rectangle__height': {}}}".format(self._width, self._height)
+         
