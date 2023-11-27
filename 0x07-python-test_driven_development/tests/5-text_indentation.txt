@@ -58,6 +58,7 @@ And what about the third one
 # Scenario 8: Mix of Punctuation Characters
 >>> text = "This string has dots. It also has colons: like this one. Questions are here? What about exclamation marks!"
 >>> text_indentation(text)# This string has dots
+This string has dots
 <BLANKLINE>
 It also has colons
 <BLANKLINE>
