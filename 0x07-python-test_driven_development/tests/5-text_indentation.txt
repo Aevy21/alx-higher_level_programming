@@ -28,6 +28,12 @@ This string has no punctuation characters
 >>> text = "Multiple dots... Some questions"
 >>> text_indentation(text)
 Multiple dots
+<BLANKLINE>
+<BLANKLINE>
+<BLANKLINE>
+<BLANKLINE>
+<BLANKLINE>
+<BLANKLINE>
 Some questions
 
 # Scenario 5: Leading and Trailing Whitespace
