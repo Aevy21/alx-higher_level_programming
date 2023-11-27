@@ -101,6 +101,7 @@ class Rectangle:
         """Return a string representation to recreate a new instance."""
         return "Rectangle({}, {})".format(self._width, self._height)
 
-def __del__(self):
+    def __del__(self):
         """Print a message when an instance is deleted."""
         print("Bye rectangle...")
+
