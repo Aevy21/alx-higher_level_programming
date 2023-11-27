@@ -96,4 +96,3 @@ class Rectangle:
                 rectangle_str += "#" * self._width + "\n"
 
             return "{}".format(rectangle_str.rstrip('\n'))
-
