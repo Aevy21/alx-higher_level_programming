@@ -96,7 +96,7 @@ class Rectangle:
         else:
             rectangle_str = ""
             for _ in range(self._height):
-                rectangle_str += str(self.print_symbol * self._width + "\n")
+                rectangle_str += str(self.print_symbol * self._width) + "\n"
 
             return "{}".format(rectangle_str.rstrip('\n'))
 
