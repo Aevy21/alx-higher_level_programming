@@ -18,6 +18,7 @@ class Rectangle:
     """
 
     def __init__(self, width=0, height=0):
+
         """
         Initialize a Rectangle instance.
 
@@ -25,56 +26,43 @@ class Rectangle:
         - width (int, optional): Width of the rectangle (default is 0).
         - height (int, optional): Height of the rectangle (default is 0).
         """
-        self.width = width
-        self.height = height
+
+        if type(width) is not int:
+            raise TypeError("width must be an integer")
+        if width < 0:
+            raise ValueError("width must be >= 0")
+        self.__width = width
+
+        if type(height) is not int:
+            raise TypeError("height must be an integer")
+        if height < 0:
+            raise ValueError("height must be >= 0")
+        self.__height = height
 
     @property
     def width(self):
-        """Get the width of the rectangle."""
-        return self._width
+        """ retrive the width """
+        return self.__width
 
     @width.setter
     def width(self, value):
-        """
-        Set the width of the rectangle.
-
-        Parameters:
-        - value (int): New width value.
-
-        Raises:
-        - TypeError: If the provided value is not an integer.
-        - ValueError: If the provided value is negative.
-        """
-        if not isinstance(value, int):
+        """ set the width if all test conditions are met """
+        if type(value) is not int:
             raise TypeError("width must be an integer")
         if value < 0:
             raise ValueError("width must be >= 0")
-        self._width = value
+        self.__width = value
 
     @property
     def height(self):
-        """Get the height of the rectangle."""
-        return self._height
+        """ returns the height """
+        return self.__height
 
     @height.setter
     def height(self, value):
-        """
-        Set the height of the rectangle.
-
-        Parameters:
-        - value (int): New height value.
-
-        Raises:
-        - TypeError: If the provided value is not an integer.
-        - ValueError: If the provided value is negative.
-        """
-        if not isinstance(value, int):
+        """ set the heigt if all conditions are met """
+        if type(value) is not int:
             raise TypeError("height must be an integer")
         if value < 0:
             raise ValueError("height must be >= 0")
-        self._height = value
-        
-     def __repr__(self):
-        """Return a string representation to recreate a new instance."""
-        return "{{'_Rectangle__width': {}, '_Rectangle__height': {}}}".format(self._width, self._height)
-         
+        self.__height = value
