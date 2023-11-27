@@ -95,8 +95,8 @@ class Rectangle:
             for _ in range(self._height):
                 rectangle_str += "#" * self._width + "\n"
 
-            return "Area: {} - Perimeter: {}\n{}".format(self.area(), self.perimeter(), rectangle_str.rstrip('\n'))
+            return "{}".format(rectangle_str.rstrip('\n'))
 
     def __repr__(self):
         """Return a string representation to recreate a new instance."""
-        return "Rectangle(width={}, height={})".format(self._width, self._height)
+        return "Rectangle({}, {})".format(self._width, self._height)
