@@ -12,4 +12,4 @@ class Rectangle:
     It currently has no attributes or methods.
     """
 
-    pass  # The pass statement is a placeholder to create an empty class 
+    pass
