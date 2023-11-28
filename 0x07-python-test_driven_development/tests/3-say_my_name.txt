@@ -13,12 +13,11 @@ My name is John Smith
 
 # Test 2: Case with only a first name
 >>> say_my_name("Alice")
-My name is Alice
+My name is Alice 
 
 # Test 3: Case with empty strings
 >>> say_my_name("", "")
 My name is    
-
 # Test 4: Case with no last name (default value)
 >>> say_my_name("Bob")
 My name is Bob
@@ -27,7 +26,7 @@ My name is Bob
 >>> say_my_name(123, "Doe")
 Traceback (most recent call last):
     ...
-TypeError: first_name must be a string or last_name must be a string
+TypeError: first_name must be a string
 
 # Test 6: Case with Unicode characters
 >>> say_my_name("Mário", "López")
@@ -35,11 +34,12 @@ My name is Mário López
 
 # Test 7:Case with leading and trailing whitespaces
 >>> say_my_name("  Charlie  ", " Brown ")
-My name is   Charlie     Brown 
+My name is   Charlie    Brown
 
 # Test 8:Case with very long names
 >>> say_my_name("X" * 100, "Y" * 150)
-My name is X * 100 Y * 150 
+My name is XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+
 
 # Test 9:Case with mixed-case names
 >>> say_my_name("mary", "JOHNSON")
@@ -53,4 +53,4 @@ My name is David# $Goliath
 >>> say_my_name()
 Traceback (most recent call last):
     ...
-TypeError: first_name must be a string or last_name must be a string
+TypeError: say_my_name() missing 1 required positional argument: 'first_name'
