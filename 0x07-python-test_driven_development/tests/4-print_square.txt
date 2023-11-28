@@ -42,7 +42,7 @@ TypeError: size must be an integer
 >>> print_square(-2.5)
 Traceback (most recent call last):
     …
-ValueError: size must be >= 0
+TypeError: size must be an integer
 
 # Test case 1: Size as a string
 >>> print_square("invalid")
