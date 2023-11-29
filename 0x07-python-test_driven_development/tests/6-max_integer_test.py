@@ -22,9 +22,13 @@ class TestMaxInteger(unittest.TestCase):
         result = max_integer([10, -2, 8, 0])
         self.assertEqual(result, 10, "Should handle a mix of positive and negative numbers")
 
-def test_empty_list(self):
+    def list_of_one_element(self):
         result = max_integer([15])
-        self.assertIsNone(result, 5, "Should return the maximum integer in the list")
+        self.assertIsNone(result, 15, "Should return the maximum integer in the list")
+
+    def max_in_middle(self):
+        result = max_integer([1, 3, 15, 6, 7])
+        self.assertIsNone(result, 15, "Should return the maximum integer in the list")
 
 if __name__ == '__main__':
     unittest.main()
