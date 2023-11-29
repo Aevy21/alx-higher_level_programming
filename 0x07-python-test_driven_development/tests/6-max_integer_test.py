@@ -24,11 +24,11 @@ class TestMaxInteger(unittest.TestCase):
 
     def list_of_one_element(self):
         result = max_integer([15])
-        self.assertIsNone(result, 15, "Should return the maximum integer in the list")
+        self.assertEqual(result, 15, "Should return the maximum integer in the list")
 
     def max_in_middle(self):
         result = max_integer([1, 3, 15, 6, 7])
-        self.assertIsNone(result, 15, "Should return the maximum integer in the list")
+        self.assertEqual(result, 15, "Should return the maximum integer in the list")
 
 if __name__ == '__main__':
     unittest.main()
