@@ -37,6 +37,7 @@ TypeError: size must be an integer
 #Test case 5: size is 1
 >>> print_square(1)
 #
+
 #Test case 6: missing one argument
 >>> print_square()
 Traceback (most recent call last):
