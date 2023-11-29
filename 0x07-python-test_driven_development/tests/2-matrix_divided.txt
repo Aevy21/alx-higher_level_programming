@@ -71,6 +71,21 @@ TypeError: matrix must be a matrix (list of lists) of integers/floats
 >>> matrix_divided([[1, 2], [3, 4]], 2.5)
 [[0.4, 0.8], [1.2, 1.6]]
 
+>>> # Test case 12: Floating-Point Divisor
+>>> matrix_divided([[3, "9"], [15, 3]], 3)
+Traceback (most recent call last):
+        ...
+TypeError: matrix must be a matrix (array of arrays of integers/floats)
 
+>>> # Test case 12: missing one argument
+>>> matrix_divided([[1, 2, 3], [4, 5, 6]], )
+Traceback (most recent call last):
+            ...
+TypeError: matrix_divided() missing 1 required positional arguments: 'matrix' and 'div'
 
+>>> # Test case 12: missing one argument
+>>> matrix_divided( )
+Traceback (most recent call last):
+            ...
+TypeError: matrix_divided() missing 1 required positional arguments: 'matrix' and 'div'
 
