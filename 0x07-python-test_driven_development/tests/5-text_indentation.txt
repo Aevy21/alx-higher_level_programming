@@ -10,9 +10,15 @@ Author: Avumile Ndlovu
 # Scenario 1: Basic Usage
 >>> text = "This is a simple text. It has a question: What's next?"
 >>> text_indentation(text)
-This is a simple text
-It has a question
+This is a simple text.
+<BLANKLINE>
+<BLANKLINE>
+It has a question:
+<BLANKLINE>
+<BLANKLINE>
 What's next?
+<BLANKLINE>
+<BLANKLINE>
 
 # Scenario 2: Empty String
 >>> text = ""
