@@ -25,11 +25,11 @@ def text_indentation(text):
     for char in text:
         current_line += char
         if char in punctuation_chars:
-            lines.append(' '.join(line.strip() for line in current_line.split(char)))
+            lines.append(' '.join(line.strip() for line in current_line.split(char) if line.strip()))
             current_line = ''
 
     if current_line:
-        lines.append(' '.join(line.strip() for line in current_line.split(char)))
+        lines.append(' '.join(line.strip() for line in current_line.split(char) if line.strip()))
 
     print('\n\n'.join(lines))
 
