@@ -14,9 +14,6 @@ def text_indentation(text):
     Raises:
     - TypeError: If the input text is not a string.
 
-    Example Usage:
-    text = "This is a sample text. It has some questions: What is it about? Let's find out!"
-    text_indentation(text)
     """
     if not isinstance(text, str):
         raise TypeError("text must be a string")
