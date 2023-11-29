@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """
 This module defines a Rectangle class with private width & height attributes.
-"""
-__author__ = lancedesk
 
+__author__ = lancedesk
+"""
 import sys
 
 
