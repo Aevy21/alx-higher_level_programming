@@ -75,3 +75,9 @@ TypeError: a must be an integer or float
 Traceback (most recent call last):
         ...
 TypeError: b must be an integer or float
+
+>>> add_integer("1", 2)
+Traceback (most recent call last):
+        ...
+TypeError: a must be an integer or float
+
