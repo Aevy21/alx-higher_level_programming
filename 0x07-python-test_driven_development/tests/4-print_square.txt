@@ -36,12 +36,12 @@ TypeError: size must be an integer
 
 #Test case 5: size is 1
 >>> print_square(1)
-
-##Test case 6: missing one argument
+#
+#Test case 6: missing one argument
 >>> print_square()
 Traceback (most recent call last):
     …
-TypeError: size must be an integer
+TypeError: print_square() missing 1 required positional argument: 'size'
 
 # Test case 7: Float Size less than 0
 >>> print_square(-2.5)
