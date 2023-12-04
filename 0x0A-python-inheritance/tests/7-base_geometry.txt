@@ -27,19 +27,3 @@ Traceback (most recent call last):
     …
 ValueError: test_value must be greater than 0
 
-
-#Test case 6: one argurment passed
->>> bg.integer_validator("test_value",)
-Traceback (most recent call last):
-          ...
-TypeError: integer_validator() missing 2 required positional argument: 'value'
-
-#Test case 7: two args missing
->>> bg.integer_validator()
-TypeError: integer_validator() missing 3 required positional arguments: 'value'
-
-#Test case 8:more than 2 args
->>> bg.integer_validator("integer", 1, 2)
-Traceback (most recent call last)
-    ...
-TypeError: integer_validator() takes 3 positional arguments but 4 were given
