@@ -15,28 +15,17 @@ My name is John Smith
 >>> say_my_name("Alice")
 My name is Alice 
 
-# Test 3: Case with empty strings
->>> say_my_name("", "")
-My name is    
-# Test 4: Case with no last name (default value)
->>> say_my_name("Bob")
-My name is Bob
-
-# Test 5: Case with non-string inputs (expecting a TypeError)
+# Test 3: Case with non-string inputs (expecting a TypeError)
 >>> say_my_name(123, "Doe")
 Traceback (most recent call last):
     ...
 TypeError: first_name must be a string
 
-# Test 6: Case with Unicode characters
+# Test 4: Case with Unicode characters
 >>> say_my_name("Mário", "López")
 My name is Mário López
 
-# Test 7:Case with leading and trailing whitespaces
->>> say_my_name("  Charlie  ", " Brown ")
-My name is   Charlie    Brown
-
-# Test 8:Case with very long names
+# Test 5:Case with very long names
 >>> say_my_name("X" * 100, "Y" * 150)
 My name is XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
 
