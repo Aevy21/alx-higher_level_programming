@@ -1,6 +1,6 @@
 # Python Inheritance README
 
-![visualization](https://images.app.goo.gl/uYBrV2eLXCxG1vDCA)
+![Descriptive Text](https://images.app.goo.gl/uYBrV2eLXCxG1vDCA)
 
 ## Introduction
 In Python, inheritance is a fundamental concept in object-oriented programming (OOP) that allows you to create a new class by reusing attributes and methods of an existing class. This README will guide you through key aspects of inheritance in Python.
