@@ -47,3 +47,9 @@ TypeError: '<' not supported between instances of 'set' and 'int'
 Traceback (most recent call last):
 TypeError: '<' not supported between instances of 'tuple' and 'int'
 
+>>> None_in_list = MyList([1, 2, 4, None, 7])
+>>> None_in_list.print_sorted()
+Traceback (most recent call last):
+TypeError: '<' not supported between instances of 'NoneType' and 'int'
+
+
