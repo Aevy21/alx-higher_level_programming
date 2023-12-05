@@ -9,11 +9,8 @@ import json
 save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
 load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
 
-try:
-    # Load existing list from the file or create an empty list
-    myList = load_from_json_file("add_item.json")
-except FileNotFoundError:
-    myList = []
+# Load existing list from the file or create an empty list
+myList = load_from_json_file("add_item.json")
 
 # Add command line arguments to the list
 myList.extend(sys.argv[1:])
