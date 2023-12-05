@@ -14,12 +14,13 @@ if __name__ == "__main__":
         # Try loading data from the 'add_item.json' file
         loaded_data = load_from_json_file("add_item.json")
 
-    except (FileNotFoundError, json.JSONDecodeError):
-        # Handle the case where the file doesn't exist or is empty
-        loaded_data = []
+        # Concatenate the loaded data with the command-line arguments
+        # excluding the script name
+        loaded_data += argv[1:]
 
-    # Concatenate loaded data with command-line args(excluding script name)
-    loaded_data += argv[1:]
+    # handle the case where the JSON file does not exist or is empty
+    except (FileNotFoundError, json.JSONDecodeError):
+        loaded_data = argv[1:]
 
     # Save the combined data back to the 'add_item.json' file
     save_to_json_file(loaded_data, "add_item.json")
