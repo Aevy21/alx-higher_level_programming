@@ -35,10 +35,6 @@ class Student:
         dict: The dictionary representation of the Student instance.
         """
         if attrs is not None and isinstance(attrs, list):
-            result = {}
-            for key in attrs:
-                if hasattr(self, key):
-                    result[key] = getattr(self, key)
-                    return result
-                else:
-                    return vars(self)
+            return {key: getattr(self, key) for key in attrs if hasattr(self, key)}
+        else:
+            return vars(self)
