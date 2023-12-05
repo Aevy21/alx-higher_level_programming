@@ -16,6 +16,5 @@ def read_file(filename=""):
     Returns:
     None
     """
-    with open(filename, 'r', encoding='utf-8') as file:
-        content = file.read()
-        print(content)
+    with open(filename, mode='r', encoding='utf-8') as file:
+        print(file.read(), end="")
