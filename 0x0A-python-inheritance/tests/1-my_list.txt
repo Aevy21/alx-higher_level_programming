@@ -53,3 +53,15 @@ Traceback (most recent call last):
 TypeError: '<' not supported between instances of 'NoneType' and 'int'
 
 
+
+>>> my_list = MyList()
+>>> my_list.append(3)
+>>> my_list.append(69)
+>>> my_list.append(-3)
+>>> print(my_list)
+[3, 69, -3]
+>>> my_list.print_sorted()
+[-3, 3, 69]
+
+
+
