@@ -27,3 +27,38 @@ Traceback (most recent call last):
     …
 ValueError: test_value must be greater than 0
 
+#Test case 6: integer_validator(no arguments passed)
+>>> bg.integer_validator()
+Traceback (most recent call last):
+    …
+TypeError: BaseGeometry.integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+#Test case 7:  integer_validator(only a string is passed)
+>>> bg.integer_validator("age")
+Traceback (most recent call last):
+    …
+TypeError: BaseGeometry.integer_validator() missing 1 required positional argument: 'value'
+
+#Test case 8:  integer_validator(a list is passed)
+>>> bg.integer_validator("test_value", [3])
+Traceback (most recent call last):
+    …
+TypeError: test_value must be an integer
+
+#Test case 8:  integer_validator(a dict is passed)
+>>> bg.integer_validator("test_value", {3, 4})
+Traceback (most recent call last):
+    …
+TypeError: test_value must be an integer
+
+
+#Test case 8:  integer_validator( None is passed)
+>>> bg.integer_validator("test_value", None)
+Traceback (most recent call last):
+    …
+TypeError: test_value must be an integer
+
+#Test case 8:  integer_validator( boolean is passed)
+>>> bg.integer_validator("test_value", True)
+
+
