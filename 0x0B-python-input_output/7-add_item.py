@@ -1,32 +1,51 @@
 #!/usr/bin/python3
 """
-This module has a script that calls on two other modules
-to load, add and save to file
+Script to add command line arguments to a Python
+list and save it to a JSON file.
 """
-
-
 import sys
 import json
+from os.path import exists
 
 
 def save_to_json_file(my_obj, filename):
-    with open(filename, "w") as f:
-        json.dump(my_obj, f)
+    """
+    Write an object to a text file using its JSON representation.
+
+    Args:
+        my_obj: Object to be serialized and written to the file.
+        filename (str): Name of the file to which the object should be saved.
+    """
+    with open(filename, 'w', encoding='utf-8') as file:
+        json.dump(my_obj, file)
 
 
 def load_from_json_file(filename):
-    try:
-        with open(filename, "r") as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return []
+    """
+    Create an object from a JSON file.
+
+    Args:
+        filename (str): Name of the JSON file
+        from which the object should be loaded.
+
+    Returns:
+        obj: Python data structure loaded from the JSON file.
+    """
+    with open(filename, 'r', encoding='utf-8') as file:
+        return json.load(file)
 
 
-# load list from the file
-myList = load_from_json_file("add_item.json")
+filename = "add_item.json"
 
-# add command line arguments to list
-myList.extend(sys.argv[1:])
+# Check if the file exists, if not, create an empty list
+if not exists(filename):
+    save_to_json_file([], filename)
 
-# save the list to the file
-save_to_json_file(myList, "add_item.json")
+# Load the existing list from the file
+my_list = load_from_json_file(filename)
+
+# Add command line arguments to the list
+my_list.extend(sys.argv[1:])
+
+# Save the updated list back to the file
+save_to_json_file(my_list, filename)
