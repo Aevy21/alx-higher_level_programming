@@ -95,3 +95,13 @@ class Rectangle(Base):
         """
         coords_str = "{}/{}".format(self.__x, self.__y)
         return "[Rectangle] ({}) {} - {}/{}".format(self.id, coords_str, self.__width, self.__height)
+
+    def display(self):
+        """
+        Prints the Rectangle instance with '#' characters, considering x and y.
+        """
+        for _ in range(self.__y):
+            print()
+
+        for _ in range(self.__height):
+            print(" " * self.__x + "#" * self.__width)
