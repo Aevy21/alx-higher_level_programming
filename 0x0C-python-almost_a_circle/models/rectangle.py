@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 """
-   Creating a  Rectangle class, inherits from Base.
+   Creating a Rectangle class, inherits from Base.
 """
 
 from models.base import Base
-
 
 class Rectangle(Base):
     """
@@ -83,12 +82,9 @@ class Rectangle(Base):
 
     def area(self):
         # Calculate and return the area
-        return self._width * self._height
+        return self.__width * self.__height
 
     def display(self):
         # Display the rectangle with '#' character
-        for _ in range(self.height):
-            print("#" * self.width)
-
-
-
+        for _ in range(self.__height):
+            print("#" * self.__width)
