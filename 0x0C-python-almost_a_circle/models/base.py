@@ -79,3 +79,45 @@ class Base:
         if json_string is None or json_string == "":
             return []
         return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """
+        Returns an instance with all attributes already set.
+
+        Args:
+            **dictionary: Double pointer to a dictionary.
+
+        Returns:
+            Base: Instance with attributes set.
+        """
+        if cls.__name__ == "Rectangle":
+            dummy_instance = cls(1, 1)  # Create a dummy Rectangle
+        elif cls.__name__ == "Square":
+            dummy_instance = cls(1)  # Create a dummy Square
+        else:
+            raise ValueError("Unsupported class for create method")
+
+        # Call update method to apply real values
+        dummy_instance.update(**dictionary)
+        return dummy_instance
+
+
+    @classmethod
+    def load_from_file(cls):
+        """
+        Returns a list of instances loaded from a file.
+
+        Returns:
+            list: List of instances.
+        """
+        class_name = cls.__name__
+        file_name = "{}.json".format(class_name)
+
+        try:
+            with open(file_name, 'r') as file:
+                json_string = file.read()
+        except FileNotFoundError:
+            return []
+        list_dicts = cls.from_json_string(json_string)
+        return [cls.create(**obj_dict) for obj_dict in list_dicts]
