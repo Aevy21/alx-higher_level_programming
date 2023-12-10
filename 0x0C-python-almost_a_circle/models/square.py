@@ -62,3 +62,10 @@ class Square(Rectangle):
         """
         coords_str = "{}/{}".format(self.x, self.y)
         return "[Square] ({}) {} - {}".format(self.id, coords_str, self.width)
+
+    def to_dictionary(self):
+        """
+        Returns the dictionary representation of a Square.
+        """
+        attributes = ('id', 'size', 'x', 'y')
+        return {attr: getattr(self, attr) for attr in attributes}
