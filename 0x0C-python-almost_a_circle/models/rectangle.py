@@ -59,7 +59,7 @@ class Rectangle(Base):
     @property
     def x(self):
         return self.__x
-
+    
     @x.setter
     def x(self, value):
         if not isinstance(value, int):
@@ -106,21 +106,13 @@ class Rectangle(Base):
         for _ in range(self.__height):
             print(" " * self.__x + "#" * self.__width)
 
+    def update(self, *args, **kwargs):
+        """Updates the values of a Rectangle instance attributes"""
+        attributes_list = ["id", "width", "height", "x", "y"]
 
-    def update(self, *args):
-        """
-        Assigns arguments to the Rectangle attributes in the specified order.
+        for i in range(len(args)):
+            setattr(self, attributes_list[i], args[i])
 
-        Args:
-            *args: Arguments to assign in the order: id, width, height, x, y.
-        """
-        if len(args) >= 1:
-            self.id = args[0]
-        if len(args) >= 2:
-            self.width = args[1]
-        if len(args) >= 3:
-            self.height = args[2]
-        if len(args) >= 4:
-            self.x = args[3]
-        if len(args) >= 5:
-            self.y = args[4]
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
