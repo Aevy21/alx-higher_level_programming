@@ -44,6 +44,7 @@ class Square(Rectangle):
             **kwargs must be skipped if *args exists and is not empty.
         """
         attr_names = ["id", "size", "x", "y"]
+        
         if args:
             attrs = args
         elif kwargs:
@@ -51,9 +52,9 @@ class Square(Rectangle):
         else:
             return
 
-        for i, attribute in enumerate(attribute_names):
-            if i < len(attributes):
-                setattr(self, attribute, attributes[i])
+        for i, attr in enumerate(attr_names):
+            if i < len(attrs):
+                setattr(self, attr, attrs[i])
 
     def __str__(self):
         """
