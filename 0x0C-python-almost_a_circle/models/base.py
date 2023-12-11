@@ -32,7 +32,7 @@ class Base:
         else:
             Base.__nb_objects += 1  # increment class attr
             self.id = Base.__nb_objects  # assign the new value to id
-    
+
     @staticmethod
     def to_json_string(list_dictionaries):
         """
@@ -101,7 +101,6 @@ class Base:
         # Call update method to apply real values
         dummy_instance.update(**dictionary)
         return dummy_instance
-
 
     @classmethod
     def load_from_file(cls):
