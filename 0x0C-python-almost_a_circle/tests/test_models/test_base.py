@@ -1,288 +1,287 @@
-import unittest
-import json
+"""Unit test for class Base"""
+
 import os
+import unittest
 from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
 
-class TestBaseClass(unittest.TestCase):
 
-    def setUp(self):
-        # This method is called before each test method
-        Base._Base__nb_objects = 0  # Reset the private class attribute before each test
+class TestBaseClassID(unittest.TestCase):
+    """Tests the funtionality of class Base id assignment"""
 
-    def tearDown(self):
-        # This method is called after each test method
-        # Clean up any created files
-        file_name_base = "{}.json".format(Base.__name__)
-        if os.path.exists(file_name_base):
-            os.remove(file_name_base)
-
-        file_name_rect = "{}.json".format(Rectangle.__name__)
-        if os.path.exists(file_name_rect):
-            os.remove(file_name_rect)
-
-        file_name_square = "{}.json".format(Square.__name__)
-        if os.path.exists(file_name_square):
-            os.remove(file_name_square)
-
-    def test_object_creation(self):
-        # Test basic object creation and ID assignment
-        obj1 = Base()
-        self.assertEqual(obj1.id, 1)  # Assuming the first object should have ID 1
-
-        obj2 = Base()
-        self.assertEqual(obj2.id, 2)  # Assuming the second object should have ID 2
-
-    def test_custom_starting_id(self):
-        # Test if the class allows specifying a custom starting ID
-        b4 = Base(12)
-        self.assertEqual(b4.id, 12)
-
-    def test_zero_starting_id(self):
-        # Test if the class handles a starting ID of zero gracefully
-        b1 = Base(0)
-        self.assertEqual(b1.id, 1)  # ID should default to 1 if starting from zero
-
-    def test_non_integer_id(self):
-        # Test if the class handles a non-integer ID gracefully
-        with self.assertRaises(TypeError):
-            Base("string_id")  # Should raise a TypeError for a non-integer ID
-
-    def test_private_class_attribute(self):
-        # Test that the private class attribute __nb_objects is not accessible directly
-        self.assertNotIn('__nb_objects', dir(Base))
-
-    def test_custom_starting_id(self):
-        # Test if the class allows specifying a custom starting ID
-        obj_with_custom_id = Base(100)
-        self.assertEqual(obj_with_custom_id.id, 100)
-
-    def test_negative_starting_id(self):
-        # Test if the class handles a negative starting ID gracefully
-        obj_with_negative_id = Base(-5)
-        self.assertEqual(obj_with_negative_id.id, 1)  # ID should default to 1 if negative
-
-    def test_invalid_starting_id_type(self):
-        # Test if the class handles an invalid starting ID type gracefully
-        with self.assertRaises(TypeError):
-            Base("invalid")  # Should raise a TypeError for an invalid starting ID
-
-    def test_auto_increment_id(self):
-        # Test if the class auto-increments the ID when id is not provided
+    def test_id_none(self):
+        """Tests for when @id is not initialized"""
         b1 = Base()
         b2 = Base()
-        b3 = Base()
-        self.assertEqual(b1.id, 1)
-        self.assertEqual(b2.id, 2)
-        self.assertEqual(b3.id, 3)
+        self.assertEqual(b2.id, b1.id + 1)
 
-    # Test cases for the static method to_json_string
-    def test_to_json_string_empty_list(self):
-        # Test if the method returns "[]" for an empty list
-        result = Base.to_json_string([])
-        self.assertEqual(result, "[]")
+    def test_positive_id(self):
+        """Tests for when id is initialized with a postive int"""
+        b = Base(12)
+        self.assertEqual(b.id, 12)
 
-    def test_to_json_string_none_list(self):
-        # Test if the method returns "[]" for None
-        result = Base.to_json_string(None)
-        self.assertEqual(result, "[]")
+    def test_zero_id(self):
+        """Tests for when id is initialized to 0"""
+        b = Base(0)
+        self.assertEqual(b.id, 0)
 
-    def test_to_json_string_non_empty_list(self):
-        # Test if the method correctly converts a non-empty list of dictionaries to JSON string
-        input_list = [{"id": 1, "name": "Alice"}, {"id": 2, "name": "Bob"}]
-        expected_result = json.dumps(input_list)
-        result = Base.to_json_string(input_list)
-        self.assertEqual(result, expected_result)
+    def test_negative_id(self):
+        """Tests for when id is initialized with a negative int"""
+        b = Base(-15)
+        self.assertEqual(b.id, -15)
 
-    def test_to_json_string_rectangle_instance(self):
-        # Test if the method correctly converts a Rectangle instance to JSON string
-        r1 = Rectangle(10, 7, 2, 8)
-        dictionary = r1.to_dictionary()
+
+class TestBaseClassToJSONString(unittest.TestCase):
+    """Tests the functionality of class Base method to_json_string()"""
+
+    def test_rectangle_1_list_dictionaries(self):
+        """Tests to_json_string() with a list of dictionaries 
+        on a Rectangle instance
+        """
+        rect = Rectangle(10, 7, 2, 8, 12)
+        dictionary = rect.to_dictionary()
         json_dictionary = Base.to_json_string([dictionary])
+        result_string =  '[{"id": 12, "width": 10, "height": 7, "x": 2, "y": 8}]'
 
-        self.assertTrue(isinstance(json_dictionary, str))
-        self.assertEqual(type(dictionary), dict)
+        self.assertTrue(type(json_dictionary), "<class 'str'>")
+        self.assertEqual(json_dictionary, result_string)
 
-    # Test cases for the save_to_file method
-    def test_save_to_file_empty_list(self):
-        # Test if the method creates an empty file for an empty list
-        Base.save_to_file([])
-        self.assertTrue(os.path.exists("Base.json"))
-        with open("Base.json", 'r') as file:
-            content = file.read()
-            self.assertEqual(content, "[]")
-
-    def test_save_to_file_none_list(self):
-        # Test if the method creates an empty file for None
-        Base.save_to_file(None)
-        self.assertTrue(os.path.exists("Base.json"))
-        with open("Base.json", 'r') as file:
-            content = file.read()
-            self.assertEqual(content, "[]")
-
-    def test_save_to_file_non_empty_list(self):
-        # Test if the method correctly writes a non-empty list to a file
-        r1 = Rectangle(10, 7, 2, 8)
-        r2 = Rectangle(5, 4, 1, 2)
-        Base.save_to_file([r1, r2])
-
-        self.assertTrue(os.path.exists("Rectangle.json"))
-        with open("Rectangle.json", 'r') as file:
-            content = file.read()
-            # Ensure the content is a JSON representation of the list of dictionaries
-            self.assertIn('{"id": 1, "width": 10, "height": 7, "x": 2, "y": 8}', content)
-            self.assertIn('{"id": 2, "width": 5, "height": 4, "x": 1, "y": 2}', content)
-
-    def test_save_to_file_invalid_list_element(self):
-        # Test if the method handles an invalid list element gracefully
-        with self.assertRaises(AttributeError):
-            Base.save_to_file([42])  # Raises AttributeError because 42 has no to_dictionary method
-
-    def test_save_to_file_invalid_list_type(self):
-        # Test if the method handles an invalid list type gracefully
-        with self.assertRaises(TypeError):
-            Base.save_to_file("not_a_list")  # Raises TypeError because input is not a list
-
-    def test_save_to_file_instance_with_to_json_string(self):
-        # Test if the method correctly writes an instance with to_json_string method to a file
-        r1 = Rectangle(10, 7, 2, 8)
-        dictionary = r1.to_dictionary()
+    def test_square_1_list_dictionaries(self):
+        """Tests to_json_string() with a list of dictionaries
+        on a Square instance
+        """
+        sq = Square(10, 2, 8, 12)
+        dictionary = sq.to_dictionary()
         json_dictionary = Base.to_json_string([dictionary])
+        result_string =  '[{"id": 12, "size": 10, "x": 2, "y": 8}]'
 
-        # Ensure the file is created and contains the expected JSON content
-        Base.save_to_file([r1])
+        self.assertTrue(type(json_dictionary), "<class 'str'>")
+        self.assertEqual(json_dictionary, result_string)
 
-        self.assertTrue(os.path.exists("Rectangle.json"))
-        with open("Rectangle.json", 'r') as file:
-            content = file.read()
-            self.assertEqual(content, json_dictionary)
+    def test_2_list_dictionaries(self):
+        """Tests a list with two dictionaries"""
+        dict_list = [{'id': 13, 'x': 2}]
+        dict_list.append({'id': 14, 'x': 3})
+        json_dictionary = Base.to_json_string(dict_list)
 
-    # Tests case for from_json_string
-    def test_from_json_string_empty_string(self):
-        # Test if the method returns an empty list for an empty string
-        result = Base.from_json_string("")
-        self.assertEqual(result, [])
+        self.assertTrue(type(json_dictionary), "<class 'str'>")
+        self.assertEqual(json_dictionary, \
+            '[{"id": 13, "x": 2}, {"id": 14, "x": 3}]')
 
-    def test_from_json_string_none_string(self):
-        # Test if the method returns an empty list for None
-        result = Base.from_json_string(None)
-        self.assertEqual(result, [])
+    def test_None_list_dictionaries(self):
+        """Tests to_json_string() when list_dictionaries is None"""
+        json_dictionary = Base.to_json_string(None)
+        self.assertTrue(type(json_dictionary), "<class 'str'>")
+        self.assertEqual(json_dictionary, "[]")
 
-    def test_from_json_string_valid_json_string(self):
-        # Test if the method correctly converts a valid JSON string to a list
-        json_string = '[{"id": 1, "name": "Alice"}, {"id": 2, "name": "Bob"}]'
-        expected_result = json.loads(json_string)
-        result = Base.from_json_string(json_string)
-        self.assertEqual(result, expected_result)
+    def test_empty_list_dictionaries(self):
+        """Tests to_json_string() when list_dictionaries=[]"""
+        json_dictionary = Base.to_json_string([])
+        self.assertTrue(type(json_dictionary), "<class 'str'>")
+        self.assertEqual(json_dictionary, "[]")
 
-    def test_from_json_string_invalid_json_string(self):
-        # Test if the method handles an invalid JSON string gracefully
-        with self.assertRaises(json.JSONDecodeError):
-            Base.from_json_string("invalid_json")  # Raises JSONDecodeError for an invalid JSON string
 
-    def test_from_json_string_rectangle_instance(self):
-        # Test if the method correctly converts a JSON string to a list containing Rectangle instances
-        list_input = [{'id': 89, 'width': 10, 'height': 4}, {'id': 7, 'width': 1, 'height': 7}]
+class TestBaseClassSaveToFile(unittest.TestCase):
+    """Tests the functionality of the save_to_file() method"""
+
+    @classmethod
+    def tearDownClass(cls):
+        """Deletes a file created after the class has run"""
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+
+        if os.path.exists("Square.json"):
+            os.remove("Square.json")
+
+        if os.path.exists("Base.json"):
+            os.remove("Base.json")
+
+    def test_rectangle_instance_list(self):
+        """Tests save_to_file() on a list of Rectangle instances"""
+        rect = Rectangle(5, 10, 2, 2, 12)
+        Rectangle.save_to_file([rect])
+
+        file_content = '[{"id": 12, "width": 5, "height": 10, "x": 2, "y": 2}]'
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), file_content)
+
+    def test_empty_rectangle_instance_list(self):
+        """Tests save_to_file() on an empty Rectangle class list"""
+        Rectangle.save_to_file([])
+
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+
+    def test_none_rectangle_instance_list(self):
+        """Tests save_to_file() on Rectangle class when list_objs=None"""
+        Rectangle.save_to_file(None)
+
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+
+    def test_square_instance_list(self):
+        """Tests save_to_file() on a list of Square instances"""
+        sq = Square(5, 2, 2, 13)
+        Square.save_to_file([sq])
+
+        file_content = '[{"id": 13, "size": 5, "x": 2, "y": 2}]'
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), file_content)
+
+    def test_empty_square_instance_list(self):
+        """Tests save_to_file() on an empty Square class list"""
+        Square.save_to_file([])
+
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+
+    def test_none_square_instance_list(self):
+        """Tests save_to_file() on Square class when list_objs=None"""
+        Square.save_to_file(None)
+
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+
+
+class TestBaseClassFromJSONString(unittest.TestCase):
+    """Tests the functionality of the from_json_string() method"""
+
+    def test_rectangle_json_string(self):
+        """Tests from_json_string() on a Rectangle instance"""
+        list_input = [{"id": 12, "width": 10, "height": 7}]
         json_list_input = Rectangle.to_json_string(list_input)
         list_output = Rectangle.from_json_string(json_list_input)
 
-        self.assertEqual(type(list_output), list)
-        self.assertTrue(all(isinstance(obj, Rectangle) for obj in list_output))
+        self.assertTrue(type(list_output), "<class 'list'>")
+        self.assertEqual(list_output,  [{"id": 12, "width": 10, "height": 7}])
 
-    # Test case for create class method
-    def test_create_rectangle_instance(self):
-        # Test if the create method correctly creates a Rectangle instance
-        rect_dict = {'id': 1, 'width': 10, 'height': 5, 'x': 2, 'y': 3}
-        rect_instance = Rectangle.create(**rect_dict)
+    def test_rectangle_empty_json_string(self):
+        """Tests from_json_string() with json_string=''"""
+        list_output = Rectangle.from_json_string("")
+        self.assertEqual(list_output, [])
 
-        # Add assertions based on your expectations
-        self.assertIsInstance(rect_instance, Rectangle)
-        self.assertEqual(rect_instance.to_dictionary(), rect_dict)
+    def test_rectangle_none_json_string(self):
+        """Tests from_json_string() with json_string=None"""
+        list_output = Rectangle.from_json_string(None)
+        self.assertEqual(list_output, [])
 
-    def test_create_square_instance(self):
-        # Test if the create method correctly creates a Square instance
-        square_dict = {'id': 2, 'size': 7, 'x': 1, 'y': 4}
-        square_instance = Square.create(**square_dict)
+    def test_square_json_string(self):
+        """Tests from_json_string() on a Square instance"""
+        list_input = [{"id": 10, "size": 5}]
+        json_list_input = Square.to_json_string(list_input)
+        list_output = Square.from_json_string(json_list_input)
 
-        self.assertIsInstance(square_instance, Square)
-        self.assertEqual(square_instance.to_dictionary(), square_dict)
+        self.assertTrue(type(list_output), "<class 'list'>")
+        self.assertEqual(list_output,  [{"id": 10, "size": 5}])
 
-    def test_create_invalid_class(self):
-        # Test if the create method raises a ValueError for an unsupported class
-        with self.assertRaises(ValueError):
-            Base.create(id=1, name="Alice")  # Raises ValueError for an unsupported class
+    def test_square_empty_json_string(self):
+        """Tests from_json_string() with json_string=''"""
+        list_output = Square.from_json_string("")
+        self.assertEqual(list_output, [])
 
-    def test_create_instance_from_to_dictionary(self):
-        # Test if the create method correctly creates an instance from its to_dictionary representation
-        r1 = Rectangle(3, 5, 1)
-        r1_dictionary = r1.to_dictionary()
-        r2 = Rectangle.create(**r1_dictionary)
+    def test_square_none_json_string(self):
+        """Tests from_json_string() with json_string=None"""
+        list_output = Square.from_json_string(None)
+        self.assertEqual(list_output, [])
 
-        self.assertIsInstance(r2, Rectangle)
-        self.assertNotEqual(r1, r2)  # Ensure r1 and r2 are not the same instance
-        self.assertEqual(r1, r2)  # Ensure r1 and r2 are equivalent in terms of attributes
 
-    # Test case for load_from_file class method
-    def test_load_from_file_empty_file(self):
-        # Test if the method returns an empty list for an empty file
-        result = Rectangle.load_from_file()
-        self.assertEqual(result, [])
+class TestBaseClassCreate(unittest.TestCase):
+    """Tests the functionality of the create() method"""
 
-    def test_load_from_file_non_empty_file(self):
-        # Test if the method correctly loads instances from a non-empty file
-        r1 = Rectangle(10, 7, 2, 8)
-        r2 = Rectangle(5, 4, 1, 2)
-        Rectangle.save_to_file([r1, r2])
+    def test_rectangle_1_attribute_dict(self):
+        """Tests create() on a Rectangle instance with dict of 1 attribute"""
+        rect = Rectangle.create(**{"id": 10})
+        self.assertEqual(str(rect), "[Rectangle] (10) 0/0 - 1/1")
 
-        result = Rectangle.load_from_file()
+    def test_rectangle_2_attributes_dict(self):
+        """Tests create() on a Rectangle instance with dict of 2 attributes"""
+        rect = Rectangle.create(**{"id": 10, "width": 5})
+        self.assertEqual(str(rect), "[Rectangle] (10) 0/0 - 5/1")
 
-        self.assertIsInstance(result, list)
-        self.assertEqual(len(result), 2)
-        self.assertIsInstance(result[0], Rectangle)
-        self.assertIsInstance(result[1], Rectangle)
-        self.assertEqual(result[0].to_dictionary(), r1.to_dictionary())
-        self.assertEqual(result[1].to_dictionary(), r2.to_dictionary())
+    def test_rectangle_3_attributes_dict(self):
+        """Tests create() on a Rectangle instance with dict of 3 attributes"""
+        rect = Rectangle.create(**{"id": 10, "width": 5, "height": 10})
+        self.assertEqual(str(rect), "[Rectangle] (10) 0/0 - 5/10")
 
-    def test_load_from_nonexistent_file(self):
-        # Test if the method returns an empty list for a nonexistent file
-        result = Rectangle.load_from_file()
-        self.assertEqual(result, [])
+    def test_rectangle_4_attributes_dict(self):
+        """Tests create() on a Rectangle instance with dict of 4 attributes"""
+        rect = Rectangle.create(**{"id": 10, "width": 5, "height": 10, "x": 2})
+        self.assertEqual(str(rect), "[Rectangle] (10) 2/0 - 5/10")
 
-    def test_save_and_load_rectangles(self):
-        # Test if saving and loading rectangles works as expected
-        r1 = Rectangle(10, 7, 2, 8)
-        r2 = Rectangle(2, 4)
-        list_rectangles_input = [r1, r2]
+    def test_rectangle_5_attributes_dict(self):
+        """Tests create() on a Rectangle instance with dict of 5 attributes"""
+        rect = Rectangle.create(**{"id": 10, "width": 5, "height": 10, "x": 2, "y": 2})
+        self.assertEqual(str(rect), "[Rectangle] (10) 2/2 - 5/10")
 
-        Rectangle.save_to_file(list_rectangles_input)
-        list_rectangles_output = Rectangle.load_from_file()
+    def test_square_1_attribute_dict(self):
+        """Tests create() on a Square instance with dict of 1 attribute"""
+        sq = Square.create(**{"id": 10})
+        self.assertEqual(str(sq), "[Square] (10) 0/0 - 1")
 
-        # Add assertions based on your expectations
-        self.assertIsInstance(list_rectangles_output, list)
-        self.assertEqual(len(list_rectangles_output), 2)
-        self.assertIsInstance(list_rectangles_output[0], Rectangle)
-        self.assertIsInstance(list_rectangles_output[1], Rectangle)
-        self.assertEqual(list_rectangles_output[0].to_dictionary(), r1.to_dictionary())
-        self.assertEqual(list_rectangles_output[1].to_dictionary(), r2.to_dictionary())
+    def test_square_2_attributes_dict(self):
+        """Tests create() on a Square instance with dict of 2 attributes"""
+        sq = Square.create(**{"id": 10, "size": 5})
+        self.assertEqual(str(sq), "[Square] (10) 0/0 - 5")
 
-    def test_save_and_load_squares(self):
-        # Test if saving and loading squares works as expected
-        s1 = Square(5)
-        s2 = Square(7, 9, 1)
-        list_squares_input = [s1, s2]
+    def test_square_3_attributes_dict(self):
+        """Tests create() on a Square instance with dict of 3 attributes"""
+        sq = Square.create(**{"id": 10, "size": 5, "x": 2})
+        self.assertEqual(str(sq), "[Square] (10) 2/0 - 5")
 
-        Square.save_to_file(list_squares_input)
-        list_squares_output = Square.load_from_file()
+    def test_square_4_attributes_dict(self):
+        """Tests create() on a Square instance with dict of 4 attributes"""
+        sq = Square.create(**{"id": 10, "size": 5, "x": 2, "y": 2})
+        self.assertEqual(str(sq), "[Square] (10) 2/2 - 5")
 
-        # Add assertions based on your expectations
-        self.assertIsInstance(list_squares_output, list)
-        self.assertEqual(len(list_squares_output), 2)
-        self.assertIsInstance(list_squares_output[0], Square)
-        self.assertIsInstance(list_squares_output[1], Square)
-        self.assertEqual(list_squares_output[0].to_dictionary(), s1.to_dictionary())
-        self.assertEqual(list_squares_output[1].to_dictionary(), s2.to_dictionary())
 
-if __name__ == '__main__':
-    unittest.main()
+class TestBaseClassLoadFromFile(unittest.TestCase):
+    """Tests the functionality of the load_from_file() method"""
 
+    @classmethod
+    def tearDownClass(cls):
+        """Deletes a file created after the class has run"""
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+
+        if os.path.exists("Square.json"):
+            os.remove("Square.json")
+
+        if os.path.exists("Base.json"):
+            os.remove("Base.json")
+
+    def test_rectangle_class_load(self):
+        """Tests load_from_file() with Rectangle class"""
+        rect = Rectangle(5, 10, 2, 2, 12)
+        Rectangle.save_to_file([rect])
+        list_rect = Rectangle.load_from_file()
+        new_rect = list_rect[0]
+
+        self.assertFalse(rect is new_rect)
+        self.assertEqual(str(new_rect), "[Rectangle] (12) 2/2 - 5/10")
+
+    def test_rectangle_inexistent_file(self):
+        """Tests load_from_file() with an inexistent file"""
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+
+        list_rect = Rectangle.load_from_file()
+        self.assertEqual(list_rect, [])
+
+    def test_square_class_load(self):
+        """Tests load_from_file() with Square class"""
+        sq = Square(5, 2, 2, 12)
+        Square.save_to_file([sq])
+        list_sq = Square.load_from_file()
+        new_sq = list_sq[0]
+
+        self.assertFalse(sq is new_sq)
+        self.assertEqual(str(new_sq), "[Square] (12) 2/2 - 5")
+
+    def test_square_inexistent_file(self):
+        """Tests load_from_file() with an inexistent file"""
+        if os.path.exists("Square.json"):
+            os.remove("Square.json")
+
+        list_sq = Square.load_from_file()
+        self.assertEqual(list_sq, [])
