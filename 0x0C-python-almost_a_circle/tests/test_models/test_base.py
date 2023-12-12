@@ -1,13 +1,30 @@
 import unittest
 import json
-from your_module import Base, Rectangle
-
+import os
+from models.base import Base
+from models.rectangle import Rectangle
+from models.square import Square
 
 class TestBaseClass(unittest.TestCase):
 
     def setUp(self):
         # This method is called before each test method
         Base._Base__nb_objects = 0  # Reset the private class attribute before each test
+
+    def tearDown(self):
+        # This method is called after each test method
+        # Clean up any created files
+        file_name_base = "{}.json".format(Base.__name__)
+        if os.path.exists(file_name_base):
+            os.remove(file_name_base)
+
+        file_name_rect = "{}.json".format(Rectangle.__name__)
+        if os.path.exists(file_name_rect):
+            os.remove(file_name_rect)
+
+        file_name_square = "{}.json".format(Square.__name__)
+        if os.path.exists(file_name_square):
+            os.remove(file_name_square)
 
     def test_object_creation(self):
         # Test basic object creation and ID assignment
@@ -21,6 +38,7 @@ class TestBaseClass(unittest.TestCase):
         # Test if the class allows specifying a custom starting ID
         b4 = Base(12)
         self.assertEqual(b4.id, 12)
+
     def test_zero_starting_id(self):
         # Test if the class handles a starting ID of zero gracefully
         b1 = Base(0)
@@ -30,7 +48,6 @@ class TestBaseClass(unittest.TestCase):
         # Test if the class handles a non-integer ID gracefully
         with self.assertRaises(TypeError):
             Base("string_id")  # Should raise a TypeError for a non-integer ID
-
 
     def test_private_class_attribute(self):
         # Test that the private class attribute __nb_objects is not accessible directly
@@ -60,8 +77,7 @@ class TestBaseClass(unittest.TestCase):
         self.assertEqual(b2.id, 2)
         self.assertEqual(b3.id, 3)
 
-
-    #test cases for the static method to_json_string
+    # Test cases for the static method to_json_string
     def test_to_json_string_empty_list(self):
         # Test if the method returns "[]" for an empty list
         result = Base.to_json_string([])
@@ -70,7 +86,7 @@ class TestBaseClass(unittest.TestCase):
     def test_to_json_string_none_list(self):
         # Test if the method returns "[]" for None
         result = Base.to_json_string(None)
-        self.assertEqual(result, "[]") 
+        self.assertEqual(result, "[]")
 
     def test_to_json_string_non_empty_list(self):
         # Test if the method correctly converts a non-empty list of dictionaries to JSON string
@@ -85,18 +101,10 @@ class TestBaseClass(unittest.TestCase):
         dictionary = r1.to_dictionary()
         json_dictionary = Base.to_json_string([dictionary])
 
-    self.assertTrue(isinstance(json_dictionary, str))
+        self.assertTrue(isinstance(json_dictionary, str))
         self.assertEqual(type(dictionary), dict)
 
-#Test cases for the save_to_file method
-     def tearDown(self):
-        # This method is called after each test method
-        # Clean up any created files
-        file_name = "{}.json".format(Base.__name__)
-        if os.path.exists(file_name):
-            os.remove(file_name)
-        
-
+    # Test cases for the save_to_file method
     def test_save_to_file_empty_list(self):
         # Test if the method creates an empty file for an empty list
         Base.save_to_file([])
@@ -113,7 +121,6 @@ class TestBaseClass(unittest.TestCase):
             content = file.read()
             self.assertEqual(content, "[]")
 
-    
     def test_save_to_file_non_empty_list(self):
         # Test if the method correctly writes a non-empty list to a file
         r1 = Rectangle(10, 7, 2, 8)
@@ -127,7 +134,7 @@ class TestBaseClass(unittest.TestCase):
             self.assertIn('{"id": 1, "width": 10, "height": 7, "x": 2, "y": 8}', content)
             self.assertIn('{"id": 2, "width": 5, "height": 4, "x": 1, "y": 2}', content)
 
-      def test_save_to_file_invalid_list_element(self):
+    def test_save_to_file_invalid_list_element(self):
         # Test if the method handles an invalid list element gracefully
         with self.assertRaises(AttributeError):
             Base.save_to_file([42])  # Raises AttributeError because 42 has no to_dictionary method
@@ -151,7 +158,7 @@ class TestBaseClass(unittest.TestCase):
             content = file.read()
             self.assertEqual(content, json_dictionary)
 
-#Tests case for from_json_string
+    # Tests case for from_json_string
     def test_from_json_string_empty_string(self):
         # Test if the method returns an empty list for an empty string
         result = Base.from_json_string("")
@@ -183,8 +190,7 @@ class TestBaseClass(unittest.TestCase):
         self.assertEqual(type(list_output), list)
         self.assertTrue(all(isinstance(obj, Rectangle) for obj in list_output))
 
-#Test case for create class method
-
+    # Test case for create class method
     def test_create_rectangle_instance(self):
         # Test if the create method correctly creates a Rectangle instance
         rect_dict = {'id': 1, 'width': 10, 'height': 5, 'x': 2, 'y': 3}
@@ -198,10 +204,10 @@ class TestBaseClass(unittest.TestCase):
         # Test if the create method correctly creates a Square instance
         square_dict = {'id': 2, 'size': 7, 'x': 1, 'y': 4}
         square_instance = Square.create(**square_dict)
-        
+
         self.assertIsInstance(square_instance, Square)
         self.assertEqual(square_instance.to_dictionary(), square_dict)
-    
+
     def test_create_invalid_class(self):
         # Test if the create method raises a ValueError for an unsupported class
         with self.assertRaises(ValueError):
@@ -217,10 +223,8 @@ class TestBaseClass(unittest.TestCase):
         self.assertNotEqual(r1, r2)  # Ensure r1 and r2 are not the same instance
         self.assertEqual(r1, r2)  # Ensure r1 and r2 are equivalent in terms of attributes
 
-#test case for load_from_file class method
-
-
-def test_load_from_file_empty_file(self):
+    # Test case for load_from_file class method
+    def test_load_from_file_empty_file(self):
         # Test if the method returns an empty list for an empty file
         result = Rectangle.load_from_file()
         self.assertEqual(result, [])
@@ -245,18 +249,6 @@ def test_load_from_file_empty_file(self):
         result = Rectangle.load_from_file()
         self.assertEqual(result, [])
 
-
-    def tearDown(self):
-        # This method is called after each test method
-        # Clean up any created files
-        file_name_rect = "{}.json".format(Rectangle.__name__)
-        if os.path.exists(file_name_rect):
-            os.remove(file_name_rect)
-
-        file_name_square = "{}.json".format(Square.__name__)
-        if os.path.exists(file_name_square):
-            os.remove(file_name_square)
-
     def test_save_and_load_rectangles(self):
         # Test if saving and loading rectangles works as expected
         r1 = Rectangle(10, 7, 2, 8)
@@ -274,7 +266,7 @@ def test_load_from_file_empty_file(self):
         self.assertEqual(list_rectangles_output[0].to_dictionary(), r1.to_dictionary())
         self.assertEqual(list_rectangles_output[1].to_dictionary(), r2.to_dictionary())
 
-     def test_save_and_load_squares(self):
+    def test_save_and_load_squares(self):
         # Test if saving and loading squares works as expected
         s1 = Square(5)
         s2 = Square(7, 9, 1)
@@ -290,7 +282,6 @@ def test_load_from_file_empty_file(self):
         self.assertIsInstance(list_squares_output[1], Square)
         self.assertEqual(list_squares_output[0].to_dictionary(), s1.to_dictionary())
         self.assertEqual(list_squares_output[1].to_dictionary(), s2.to_dictionary())
-
 
 if __name__ == '__main__':
     unittest.main()
