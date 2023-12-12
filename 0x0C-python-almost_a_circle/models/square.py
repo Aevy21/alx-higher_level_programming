@@ -44,11 +44,13 @@ class Square(Rectangle):
             **kwargs must be skipped if *args exists and is not empty.
         """
         attr_names = ["id", "size", "x", "y"]
-        
+
         if args:
             attrs = args
         elif kwargs:
-            attrs = [kwargs.get(attr, getattr(self, attr)) for attr in attr_names]
+            attrs = [
+                kwargs.get(attr, getattr(self, attr)) for attr in attr_names
+                ]
         else:
             return
 
