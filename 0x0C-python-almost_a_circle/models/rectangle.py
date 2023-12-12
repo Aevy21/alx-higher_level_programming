@@ -26,7 +26,7 @@ class Rectangle(Base):
             height (int): Height of the rectangle.
             x (int, optional): X-coordinate of the rectangle. Defaults to 0.
             y (int, optional): Y-coordinate of the rectangle. Defaults to 0.
-            id (int, optional): If provided, assigns the given ID. Defaults to None.
+            id (int, optional): If provided, assigns the given or id=None.
         """
 
         super().__init__(id)
@@ -183,8 +183,8 @@ class Rectangle(Base):
         Updates the values of a Rectangle instance attributes.
 
         Args:
-            *args: List of arguments to update in the order: id, width, height, x, y.
-            **kwargs: Key-value pairs to update, where each key represents an attribute.
+            *args: List of args to update in  order: id, width, height, x, y.
+            **kwargs: Key-value pairs to update, where each key reps an attr.
 
         Note:
             **kwargs must be skipped if *args exists and is not empty.
@@ -206,4 +206,3 @@ class Rectangle(Base):
         """
         attributes = ('id', 'width', 'height', 'x', 'y')
         return {attr: getattr(self, attr) for attr in attributes}
-
