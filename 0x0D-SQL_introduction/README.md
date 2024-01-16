@@ -1,6 +1,6 @@
-```markdown
-# 0x0D SQL - Introduction
 
+# 0x0D SQL - Introduction
+``` markdown
 ## Installation Guide
 ### Install MySQL 8.0 on Ubuntu 20.04 LTS
 ```bash
