@@ -1,4 +1,4 @@
-#!/usr/bin/node
+#!/usr/bin/nodejs
 
 const firstArgument = process.argv[2];
 const integerNumber = parseInt(firstArgument, 10);

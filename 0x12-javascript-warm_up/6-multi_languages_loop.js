@@ -6,6 +6,6 @@ const lines = [
   "JavaScript is amazing"
 ];
 
-for (let i = 0; i < lines.length; i++) {
-  console.log(lines[i]);
+while (lines.length > 0) {
+  console.log(lines.shift());
 }
