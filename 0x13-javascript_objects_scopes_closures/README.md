@@ -1,4 +1,4 @@
-vaScript - Objects, Scopes, and Closures
+#JavaScript - Objects, Scopes, and Closures
 
 #### Overview
 This README provides an overview of essential concepts in JavaScript, focusing on Objects, Scopes, and Closures. Understanding these concepts is crucial for developing efficient and maintainable JavaScript code.
