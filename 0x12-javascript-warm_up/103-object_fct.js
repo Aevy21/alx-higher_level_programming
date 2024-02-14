@@ -10,6 +10,10 @@ function incr(number) {
     number++;
 }
 
+module.exports = {
+    incr: incr
+};
+
 myObject.incr();
 console.log(myObject);
 
