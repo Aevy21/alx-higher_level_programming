@@ -13,4 +13,4 @@ for (const userId in dict) {
   }
 }
 
-console.log(newDict);
+console.log(JSON.stringify(newDict, null, 2));
