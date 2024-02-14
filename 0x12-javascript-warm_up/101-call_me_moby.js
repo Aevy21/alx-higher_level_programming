@@ -5,3 +5,4 @@ const executeXTimes = function(x, theFunction) {
         theFunction(); // C
     }
 };
+module.exports = executeXTimes;
