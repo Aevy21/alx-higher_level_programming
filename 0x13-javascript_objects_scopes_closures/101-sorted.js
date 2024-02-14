@@ -5,12 +5,12 @@ const newDict = {};
 
 for (const userId in dict) {
   const occurrences = dict[userId];
-
-  if (occurrences in newDict) {
-    newDict[occurrences].push(userId);
-  } else {
-    newDict[occurrences] = [userId];
+  
+  if (!(occurrences in newDict)) {
+    newDict[occurrences] = [];
   }
+  
+  newDict[occurrences].push(userId);
 }
 
-console.log(JSON.stringify(newDict, null, 2));
+console.log(newDict);
