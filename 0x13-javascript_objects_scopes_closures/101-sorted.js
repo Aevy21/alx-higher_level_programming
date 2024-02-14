@@ -6,7 +6,7 @@ const newDict = {};
 for (const userId in dict) {
   const occurrences = dict[userId];
   
-  if (!newDict.hasOwnProperty(occurrences)){
+  if (!newDict.hasOwnProperty(occurrences)) {
     newDict[occurrences] = [];
   }
   
