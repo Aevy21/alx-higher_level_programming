@@ -6,13 +6,13 @@ const myObject = {
 
 console.log(myObject);
 
-function incr(number) {
-    number++;
-}
-
-module.exports = {
-    incr: incr
+const incr = {
+    incr: function(number) {
+        return number + 1;
+    }
 };
+
+module.exports = incr;
 
 myObject.incr();
 console.log(myObject);
