@@ -37,8 +37,8 @@ def filter_states(username, password, db_name, state_name):
     cursor = db.cursor()
 
     # Use a parameterized query to prevent SQL injection
-    query = "SELECT * FROM states WHERE name LIKE BINARY %s ORDER BY id ASC"
-    cursor.execute(query, (state_name,))
+    cursor.execute= "SELECT * FROM states WHERE name = %s", (state_name,))
+    
 
     # Fetch all rows
     rows = cursor.fetchall()
