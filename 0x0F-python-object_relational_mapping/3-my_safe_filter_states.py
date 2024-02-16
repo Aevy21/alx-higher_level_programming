@@ -7,7 +7,6 @@ import sys
 import MySQLdb
 
 if __name__ == "__main__":
-    # Connect to MySQL server
     conn = MySQLdb.connect(
         host="localhost",
         port=3306,
@@ -16,11 +15,10 @@ if __name__ == "__main__":
         db=sys.argv[3],
         charset="utf8"
     )
-    
     cur = conn.cursor()
 
     # Use a parameterized query to prevent SQL injection
-    query = "SELECT * FROM states WHERE name = %s ORDER BY states.id ASC"
+    query = """SELECT * FROM states WHERE states.name LIKE BINARY %s ORDER BY states.id ASC"""
     cur.execute(query, (sys.argv[4],))
 
     query_rows = cur.fetchall()
