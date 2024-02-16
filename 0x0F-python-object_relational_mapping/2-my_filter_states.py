@@ -2,7 +2,6 @@
 """
 Filter and display values in the 'states' table
 matching the provided state name.
-
 Parameters:
     - username: MySQL username
     - password: MySQL password
@@ -15,30 +14,18 @@ import sys
 
 
 def filter_states(username, password, db_name, state_name):
-    """
-    Connects to a MySQL database and retrieves states matching the provided name.
-
-    Args:
-        username (str): MySQL username.
-        password (str): MySQL password.
-        db_name (str): Name of the database.
-        state_name (str): Name of the state to filter and display.
-    """
+    """Display values in the states table matching the state name."""
     # Connect to MySQL server
-    db = MySQLdb.connect(
-        host='localhost',
-        port=3306,
-        user=username,
-        passwd=password,
-        db=db_name
-    )
+    db = MySQLdb.connect(host='localhost', port=3306,
+                         user=username, passwd=password, db=db_name)
 
     # Create a cursor object
     cursor = db.cursor()
 
-    # Use a parameterized query to prevent SQL injection
-    query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
-    cursor.execute(query, (state_name,))
+    # Format and execute the query to select states with the given name
+    query = ("SELECT * FROM states WHERE name = '{}' "
+             "ORDER BY id ASC").format(state_name)
+    cursor.execute(query)
 
     # Fetch all rows
     rows = cursor.fetchall()
@@ -60,7 +47,10 @@ if __name__ == "__main__":
         sys.exit(1)
 
     # Get the command-line arguments
-    username, password, db_name, state_name = sys.argv[1:]
+    username, password, db_name, state_name = (sys.argv[1],
+                                               sys.argv[2],
+                                               sys.argv[3],
+                                               sys.argv[4])
 
     # Call the function to filter states
     filter_states(username, password, db_name, state_name)
