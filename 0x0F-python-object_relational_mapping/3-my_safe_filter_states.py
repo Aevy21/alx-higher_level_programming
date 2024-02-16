@@ -9,7 +9,7 @@ Parameters:
     - database: Name of the database
     - state_name: Name of the state to filter and display
 """
-
+from sys import argv
 import MySQLdb
 import sys
 
@@ -54,13 +54,10 @@ def filter_states(username, password, db_name, state_name):
 
 if __name__ == "__main__":
     # Check if the correct number of arguments is provided
-    if len(sys.argv) != 5:
+    if len(argv) != 5:
         print("Usage: {} <username> <password> <database> <state_name>"
-              .format(sys.argv[0]))
+              .format(argv[0]))
         sys.exit(1)
 
-    # Get the command-line arguments
-    username, password, db_name, state_name = sys.argv[1:]
-
     # Call the function to filter states
-    filter_states(username, password, db_name, state_name)
+    filter_states(argv[1), argv[2], argv[3], argv[4])
