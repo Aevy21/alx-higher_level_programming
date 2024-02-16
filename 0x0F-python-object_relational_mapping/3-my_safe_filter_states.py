@@ -1,63 +1,74 @@
 #!/usr/bin/python3
 """
-Filter and display values in the 'states' table
-matching the provided state name.
+Retrieve and display values in the 'states' table
+matching the provided state name, preventing SQL injection.
 
 Parameters:
     - username: MySQL username
     - password: MySQL password
     - database: Name of the database
-    - state_name: Name of the state to filter and display
+    - state_name: Name of the state to search for
 """
-from sys import argv
+
 import MySQLdb
 import sys
 
 
-def filter_states(username, password, db_name, state_name):
+def search_states(username, password, database, state_name):
     """
     Connects to a MySQL database and retrieves states matching the provided name.
 
     Args:
         username (str): MySQL username.
         password (str): MySQL password.
-        db_name (str): Name of the database.
-        state_name (str): Name of the state to filter and display.
+        database (str): Name of the database.
+        state_name (str): Name of the state to search for.
     """
-    # Connect to MySQL server
-    db = MySQLdb.connect(
-        host='localhost',
-        port=3306,
-        user=username,
-        passwd=password,
-        db=db_name
-    )
+    try:
+        # Connect to MySQL server
+        conn = MySQLdb.connect(
+            host="localhost",
+            port=3306,
+            user=username,
+            passwd=password,
+            db=database,
+            charset="utf8"
+        )
 
-    # Create a cursor object
-    cursor = db.cursor()
+        # Create a cursor object
+        cursor = conn.cursor()
 
-    # Use a parameterized query to prevent SQL injection
-    query = "SELECT * FROM states WHERE name = %s"
-    cursor.execute(query, (state_name,))
+        # Use a parameterized query to prevent SQL injection
+        query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
+        cursor.execute(query, (state_name,))
 
-    # Fetch all rows
-    rows = cursor.fetchall()
+        # Fetch all rows
+        rows = cursor.fetchall()
 
-    # Display the results
-    for row in rows:
-        print(row)
+        # Display the results
+        for row in rows:
+            print(row)
 
-    # Close cursor and database connection
-    cursor.close()
-    db.close()
+    except MySQLdb.Error as e:
+        print("MySQL Error:", e)
+
+    finally:
+        # Close cursor and database connection
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
 
 
 if __name__ == "__main__":
     # Check if the correct number of arguments is provided
-    if len(argv) != 5:
+    if len(sys.argv) != 5:
         print("Usage: {} <username> <password> <database> <state_name>"
-              .format(argv[0]))
+              .format(sys.argv[0]))
         sys.exit(1)
 
-    # Call the function to filter states
-    filter_states(argv[1], argv[2], argv[3], argv[4])
+    # Get the command-line arguments
+    username, password, database, state_name = sys.argv[1:]
+
+    # Call the function to search for states
+    search_states(username, password, database, state_name)
