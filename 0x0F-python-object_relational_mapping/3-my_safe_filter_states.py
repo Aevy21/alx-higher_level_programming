@@ -1,39 +1,22 @@
 #!/usr/bin/python3
-"""This script displays all states with a name starting with
-N from the hbtn_0e_0_usa
+"""This module contains a script that lists all states with name matching
+a string passed in the CL from the database hbtn_0e_0_usa
 """
-from sys import argv
+
 import MySQLdb
-
-
-def list_states(username, password, database, state_name):
-    """Lists all states which starts with letter N
-
-    Args:
-        username (str): Username
-        password (str): User's password
-        database (str): Database name
-        state_name (str): State name
-    """
-    db = MySQLdb.connect(
-        host="localhost",
-        user=username,
-        password=password,
-        db=database,
-        port=3306
-    )
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM states WHERE name = %s", (state_name,))
-    states = cursor.fetchall()
-    for state in states:
-        print(state)
-    cursor.close()
-    db.close()
-
+from sys import argv
 
 if __name__ == "__main__":
-    if len(argv) != 5:
-        print("Usage: <script> <username> <password> <database> <state name>")
-        exit(1)
-    # execute function
-    list_states(argv[1], argv[2], argv[3], argv[4])
+    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
+                         passwd=argv[2], db=argv[3])
+    cur = db.cursor()
+    cur.execute("SELECT * FROM states \
+                WHERE name = %s \
+                ORDER BY id ASC",
+                (argv[4],))
+    all_states = cur.fetchall()
+    for state in all_states:
+        print(state)
+
+    cur.close()
+    db.close()
