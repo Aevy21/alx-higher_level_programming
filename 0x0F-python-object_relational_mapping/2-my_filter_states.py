@@ -17,7 +17,7 @@ if __name__ == "__main__":
     )
     cur = conn.cursor()
 
-    query = "(SELECT * FROM states WHERE name = '{}'  ORDER BY states.id ASC)".format(sys.argv[4])
+    query = "(SELECT * FROM states WHERE name = '{}'  ORDER BY states.id ASC)".format(sys.argv[4],)
     cur.execute(query)
 
     query_rows = cur.fetchall()
