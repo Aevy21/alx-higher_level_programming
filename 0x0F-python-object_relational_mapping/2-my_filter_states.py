@@ -1,29 +1,66 @@
 #!/usr/bin/python3
 """
-Connects to a MySQL database and retrieves all states from the table.
+Filter and display values in the 'states' table
+matching the provided state name.
+
+Parameters:
+    - username: MySQL username
+    - password: MySQL password
+    - database: Name of the database
+    - state_name: Name of the state to filter and display
 """
 
-import sys
 import MySQLdb
+import sys
 
-if __name__ == "__main__":
-    conn = MySQLdb.connect(
-        host="localhost",
+
+def filter_states(username, password, db_name, state_name):
+    """
+    Connects to a MySQL database and retrieves states matching the provided name.
+
+    Args:
+        username (str): MySQL username.
+        password (str): MySQL password.
+        db_name (str): Name of the database.
+        state_name (str): Name of the state to filter and display.
+    """
+    # Connect to MySQL server
+    db = MySQLdb.connect(
+        host='localhost',
         port=3306,
-        user=sys.argv[1],
-        passwd=sys.argv[2],
-        db=sys.argv[3],
-        charset="utf8"
+        user=username,
+        passwd=password,
+        db=db_name
     )
-    cur = conn.cursor()
 
-    # Use a parameterized query with .format() method
-    query = """SELECT * FROM states WHERE states.name LIKE BINARY '{}' ORDER BY states.id ASC""".format(sys.argv[4])
-    cur.execute(query)
+    # Create a cursor object
+    cursor = db.cursor()
 
-    query_rows = cur.fetchall()
-    for row in query_rows:
+    # Use a parameterized query to prevent SQL injection
+    query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
+    cursor.execute(query, (state_name,))
+
+    # Fetch all rows
+    rows = cursor.fetchall()
+
+    # Display the results
+    for row in rows:
         print(row)
 
-    cur.close()
-    conn.close()
+    # Close cursor and database connection
+    cursor.close()
+    db.close()
+
+
+if __name__ == "__main__":
+    # Check if the correct number of arguments is provided
+    if len(sys.argv) != 5:
+        print("Usage: {} <username> <password> <database> <state_name>"
+              .format(sys.argv[0]))
+        sys.exit(1)
+
+    # Get the command-line arguments
+    username, password, db_name, state_name = sys.argv[1:]
+
+    # Call the function to filter states
+    filter_states(username, password, db_name, state_name)
