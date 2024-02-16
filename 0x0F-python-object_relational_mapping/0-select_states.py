@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This script connects to a MySQLdb and retrieves all states from the table.
+Connects to a MySQL database and retrieves all states from the table.
 """
 
 import sys
