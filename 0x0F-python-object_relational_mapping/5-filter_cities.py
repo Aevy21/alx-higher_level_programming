@@ -5,11 +5,12 @@ from the database hbtn_0e_4_usa.
 """
 
 import MySQLdb
-import sys
+from sys import argv
+
 
 def list_cities_by_state(username, password, database_name, state_name):
     """
-    Retrieve and display all cities of the specified state from the database.
+    Retrieve and display all cities of the specified state from the specified database.
 
     :param username: MySQL username
     :param password: MySQL password
@@ -24,8 +25,10 @@ def list_cities_by_state(username, password, database_name, state_name):
 
         # Execute the parameterized query to select cities from the specified state
         cur.execute("""
-            SELECT * FROM cities
-            WHERE state_name = %s
+            SELECT cities.id, cities.name
+            FROM cities
+            JOIN states ON cities.state_id = states.id
+            WHERE states.name = %s
             ORDER BY cities.id ASC
         """, (state_name,))
 
@@ -33,9 +36,9 @@ def list_cities_by_state(username, password, database_name, state_name):
         cities = cur.fetchall()
         if cities:
             for city in cities:
-                print(city[0])
+                print(city[1])  # Print city name
         else:
-            print("No cities found for the specified state.")
+            print("")
 
     except MySQLdb.Error as e:
         print(f"Error accessing MySQL: {e}")
@@ -47,15 +50,11 @@ def list_cities_by_state(username, password, database_name, state_name):
         if db:
             db.close()
 
+
 if __name__ == "__main__":
-    if len(sys.argv) != 5:
-        print("Usage: ./script.py <username> <password> <database_name> <state_name>")
-        sys.exit(1)
+    if len(argv) != 5:
+        print("Usage: script.py <username> <password> <database_name> <state_name>")
+        exit(1)
 
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database_name = sys.argv[3]
-    state_name = sys.argv[4]
-
-    list_cities_by_state(username, password, database_name, state_name)
+    list_cities_by_state(argv[1], argv[2], argv[3], argv[4])
 
