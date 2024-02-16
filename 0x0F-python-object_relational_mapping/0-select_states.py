@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
-This script connects to a MySQL database and retrieves all states from the 'states' table,
-displaying them sorted in ascending order by their IDs.
+This script connects to a MySQL database and retrieves all states from the 'states' table.
 """
 
 import sys
