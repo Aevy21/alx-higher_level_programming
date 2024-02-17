@@ -8,6 +8,7 @@ from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 import sys
 
+
 def add_state():
     """
     Add the State object "Louisiana" to the specified database.
@@ -30,6 +31,7 @@ def add_state():
 
     except Exception as e:
         print(f"Error accessing MySQL: {e}")
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:

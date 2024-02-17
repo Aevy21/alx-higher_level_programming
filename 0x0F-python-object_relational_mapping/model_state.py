@@ -9,6 +9,7 @@ from sqlalchemy.ext.declarative import declarative_base
 # Create the Base instance
 Base = declarative_base()
 
+
 class State(Base):
     """
     Class representing a state.
@@ -20,4 +21,3 @@ class State(Base):
 
     def __repr__(self):
         return f"<State(id={self.id}, name={self.name})>"
-

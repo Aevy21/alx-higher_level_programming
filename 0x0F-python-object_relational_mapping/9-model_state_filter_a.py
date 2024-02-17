@@ -9,6 +9,7 @@ from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 import sys
 
+
 def list_states_with_letter_a():
     """
     Retrieve and display all State objects containing the letter 'a'
@@ -23,7 +24,8 @@ def list_states_with_letter_a():
         session = Session()
 
         # Query and print State objects containing the letter 'a'
-        states_with_a = session.query(State).filter(State.name.like('%a%')).order_by(State.id).all()
+        states_with_a = session.query(State).filter(
+            State.name.like('%a%')).order_by(State.id).all()
         if states_with_a:
             for state in states_with_a:
                 print(f"{state.id}: {state.name}")
@@ -33,10 +35,10 @@ def list_states_with_letter_a():
     except Exception as e:
         print(f"Error accessing MySQL: {e}")
 
+
 if __name__ == "__main__":
     if len(sys.argv) != 4:
         print("Usage: ./script.py <username> <password> <database_name>")
         sys.exit(1)
 
     list_states_with_letter_a()
-

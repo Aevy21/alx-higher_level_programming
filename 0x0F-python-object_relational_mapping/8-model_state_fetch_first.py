@@ -8,6 +8,7 @@ from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 import sys
 
+
 def print_first_state():
     """
     Retrieve and print the first State object from the specified database.
@@ -30,10 +31,10 @@ def print_first_state():
     except Exception as e:
         print(f"Error accessing MySQL: {e}")
 
+
 if __name__ == "__main__":
     if len(sys.argv) != 4:
         print("Usage: ./script.py <username> <password> <database_name>")
         sys.exit(1)
 
     print_first_state()
-

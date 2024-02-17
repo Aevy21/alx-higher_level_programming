@@ -8,6 +8,7 @@ from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 import sys
 
+
 def change_state_name():
     """
     Change the name of a State object with id=2 to "New Mexico" in the specified database.
@@ -28,6 +29,7 @@ def change_state_name():
 
     except Exception as e:
         print(f"Error accessing MySQL: {e}")
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:

@@ -9,6 +9,7 @@ from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 import sys
 
+
 def print_state_by_name():
     """
     Retrieve and print the State object with the name passed as an argument
@@ -34,10 +35,10 @@ def print_state_by_name():
     except Exception as e:
         print(f"Error accessing MySQL: {e}")
 
+
 if __name__ == "__main__":
     if len(sys.argv) != 5:
         print("Usage: ./script.py <username> <password> <database_name> <state_name>")
         sys.exit(1)
 
     print_state_by_name()
-
