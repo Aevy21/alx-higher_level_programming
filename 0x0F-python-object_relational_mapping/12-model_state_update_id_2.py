@@ -11,7 +11,7 @@ import sys
 
 def change_state_name():
     """
-    Change the name of a State object with id=2 to "New Mexico" in the specified database.
+    Change the name of a State object with id=2 to "New Mexico" in the database.
     """
     try:
         # Create engine and bind session
