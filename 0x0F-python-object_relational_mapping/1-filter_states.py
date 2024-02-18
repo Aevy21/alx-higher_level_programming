@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Connects to a MySQL database and retrieves all states with names starting with 'N'.
+Connects MySQL database and retrieves all states with names starting with 'N'.
 """
 
 import sys
@@ -19,7 +19,8 @@ if __name__ == "__main__":
     cur = conn.cursor()
 
     # Execute the query to retrieve states starting with 'N' (case-sensitive)
-    cur.execute("SELECT id, name FROM states WHERE name LIKE BINARY 'N%' ORDER BY id ASC")
+    cur.execute("SELECT id, name FROM states WHERE \
+            name LIKE BINARY 'N%' ORDER BY id ASC")
 
     # Fetch and display results
     query_rows = cur.fetchall()
