@@ -26,7 +26,7 @@ def print_state_by_name():
         # Query for the State object with the specified name
         state = session.query(State).filter(State.name == sys.argv[4]).first()
 
-        # Print the ID of the State object if found, otherwise print "Not found"
+        
         if state:
             print(state.id)
         else:
@@ -38,7 +38,7 @@ def print_state_by_name():
 
 if __name__ == "__main__":
     if len(sys.argv) != 5:
-        print("Usage: ./script.py <username> <password> <database_name> <state_name>")
+        print(" ./script.py <username> <password> <database_name> <state_name>")
         sys.exit(1)
 
     print_state_by_name()
