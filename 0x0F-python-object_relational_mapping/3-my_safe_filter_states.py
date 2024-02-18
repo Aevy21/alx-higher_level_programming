@@ -9,12 +9,13 @@ where name matches the argument, safely from MySQL injections.
 import MySQLdb
 from sys import argv
 
+
 def display_states():
     """
     Connect to the database and display values from the states table
     where the name matches the argument, safely from MySQL injections.
     """
-    
+
     try:
         # Connect to the database using command-line arguments
         db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
@@ -45,6 +46,7 @@ def display_states():
             cur.close()
         if db:
             db.close()
+
 
 if __name__ == "__main__":
     if len(argv) != 5:
