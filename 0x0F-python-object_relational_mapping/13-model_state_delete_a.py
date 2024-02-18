@@ -23,7 +23,7 @@ def delete_states_with_letter_a():
         Session = sessionmaker(bind=engine)
         session = Session()
 
-        # Query for State objects with a name containing the letter 'a' and delete them
+        # Query for State  with a name containing the letter 'a' and delete them
         states_to_delete = session.query(
             State).filter(State.name.like('%a%')).all()
         if states_to_delete:
