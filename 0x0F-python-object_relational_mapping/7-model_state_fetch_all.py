@@ -25,9 +25,7 @@ def list_all_states():
         all_states = session.query(State).order_by(State.id).all()
         if all_states:
             for state in all_states:
-                print(f"{state.id}: {state.name}")
-        else:
-            print("No states found in the database.")
+                print("{}: {}".format(state.id, state.name))
 
     except Exception as e:
         print(f"Error accessing MySQL: {e}")
