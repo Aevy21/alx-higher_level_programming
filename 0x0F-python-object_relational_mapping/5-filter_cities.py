@@ -39,6 +39,8 @@ def list_cities_by_state(username, password, database_name, state_name):
         if cities:
             city_names = ', '.join(city[0] for city in cities)
             print(city_names)
+        else:
+            print("")
 
     except MySQLdb.Error as e:
         print(f"Error accessing MySQL: {e}")
