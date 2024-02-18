@@ -1,15 +1,17 @@
 #!/usr/bin/python3
 """
-takes in the name of a state as an argv and lists all cities, using the database hbtn_0e_4_usa.
+takes in the name of a state as an argv and lists all cities, using the \
+        database hbtn_0e_4_usa.
 """
 
 import MySQLdb
 from sys import argv
 
+
 def list_cities_by_state(username, password, database_name, state_name):
     """
     Retrieve and display all cities of the specified state from the database.
-    
+
     :param username: MySQL username
     :param password: MySQL password
     :param database_name: Name of the database
@@ -51,9 +53,10 @@ def list_cities_by_state(username, password, database_name, state_name):
         if db:
             db.close()
 
+
 if __name__ == "__main__":
     if len(argv) != 5:
-        print("Usage: ./script.py <username> <password> <database_name> <state_name>")
+        print("Usage: ./script.py <username> <password> <databse> <state>")
         exit(1)
 
     list_cities_by_state(argv[1], argv[2], argv[3], argv[4])
