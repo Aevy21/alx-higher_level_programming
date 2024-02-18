@@ -26,8 +26,6 @@ if __name__ == "__main__":
     if query_rows:
         for row in query_rows:
             print(row)  # Print the state ID and state name
-    else:
-        print("No states found with names starting with 'N'")
 
     # Close cursor and database connection
     cur.close()
