@@ -11,7 +11,7 @@ from sys import argv
 def list_all_cities(username, password, database_name):
     """
     Retrieve and display all cities from the specified database.
-    
+
     :param username: MySQL username
     :param password: MySQL password
     :param database_name: Name of the database
