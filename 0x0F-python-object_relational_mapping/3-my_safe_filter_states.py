@@ -5,6 +5,7 @@ This script displays all values in the states table of hbtn_0e_0_usa
 where name matches the argument, safely from MySQL injections.
 """
 
+
 import MySQLdb
 from sys import argv
 
@@ -13,6 +14,7 @@ def display_states():
     Connect to the database and display values from the states table
     where the name matches the argument, safely from MySQL injections.
     """
+    
     try:
         # Connect to the database using command-line arguments
         db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
@@ -46,7 +48,7 @@ def display_states():
 
 if __name__ == "__main__":
     if len(argv) != 5:
-        print("Usage: ./script.py <username> <password> <database_name> <state_name>")
+        print("Usage: ./script.py <username> <password> <database> <state>")
         exit(1)
 
     display_states()
