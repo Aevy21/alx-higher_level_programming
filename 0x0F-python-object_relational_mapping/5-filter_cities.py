@@ -36,7 +36,7 @@ def list_cities_by_state(username, password, database_name, state_name):
         cities = cur.fetchall()
         if cities:
             for city in cities:
-                print(city[1])
+                print(city)
 
     except MySQLdb.Error as e:
         print(f"Error accessing MySQL: {e}")
