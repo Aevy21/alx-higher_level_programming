@@ -28,7 +28,7 @@ def list_states_with_letter_a():
             State.name.like('%a%')).order_by(State.id).all()
         if states_with_a:
             for state in states_with_a:
-                print(state)
+                print("{}: {}".format(state.id, state.name))
         else:
             print("Nothing")
 
