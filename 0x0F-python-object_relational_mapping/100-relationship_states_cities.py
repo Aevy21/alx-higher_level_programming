@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-"""Script to create a State "California" with the City "San Francisco" in the database. """
+"""Script to create a State with the City in the database. """
 
 import sys
 from sqlalchemy import create_engine
@@ -10,7 +10,7 @@ from relationship_city import City
 
 if __name__ == "__main__":
     """
-    Script to create a State "California" with the City "San Francisco" in the database.
+    Script to create a State with the City in the database.
 
     Args:
         sys.argv[1] (str): MySQL username.
@@ -21,8 +21,9 @@ if __name__ == "__main__":
     password = sys.argv[2]
     database_name = sys.argv[3]
 
+    db_conn = f"mysql://{username}:{password}@localhost:3306/{database_name}"
     # Create engine
-    engine = create_engine(f'mysql://{username}:{password}@localhost:3306/{database_name}')
+    engine = create_engine(db_conn)
 
     # Create all tables in the engine
     Base.metadata.create_all(engine)
