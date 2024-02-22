@@ -32,9 +32,8 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Create California state with San Francisco city
-    california = State(name="California")
-    san_francisco = City(name="San Francisco", state=california)
+    # Create the State "California" with the City "San Francisco"
+    california = State(name="California", cities=[City(name="San Francisco")])
+    
     session.add(california)
-    session.add(san_francisco)
     session.commit()
