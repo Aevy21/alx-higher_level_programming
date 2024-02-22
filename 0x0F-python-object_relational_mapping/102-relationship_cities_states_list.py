@@ -15,18 +15,19 @@ from relationship_city import City
 if __name__ == "__main__":
     username = sys.argv[1]
     password = sys.argv[2]
-    db_name = sys.argv[3]
+    database_name = sys.argv[3]
 
-    db_url = "mysql://{username}:{password}@localhost:3306/{database_name}"
-    db_url = db_url.format(username=username, password=password, db_name=db_name)
+    db_connection_string = "mysql://{username}:{password}@localhost:3306/{database_name}"
+    db_connection_string = db_connection_string.format(username=username, password=password, database_name=database_name)
 
-    db_engine = create_engine(db_url)
-    Base.metadata.bind = db_engine
+    engine = create_engine(db_connection_string)
+    Base.metadata.bind = engine
 
-    Session = sessionmaker(bind=db_engine)
+    Session = sessionmaker(bind=engine)
     session = Session()
 
     cities = session.query(City).order_by(City.id).all()
 
     for city in cities:
         print("{}: {} -> {}".format(city.id, city.name, city.state.name))
+
