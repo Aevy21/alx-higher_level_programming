@@ -14,9 +14,8 @@ from relationship_city import City
 
 if __name__ == "__main__":
     """
-Script to list all City objects from the database hbtn_0e_101_usa.
-
-Usage:
+    Script to list all City objects from the database hbtn_0e_101_usa.
+    Usage:
     python script.py <username> <password> <database>
     """
     username = sys.argv[1]
