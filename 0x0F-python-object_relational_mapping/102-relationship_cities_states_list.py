@@ -14,11 +14,12 @@ from relationship_city import City
 
 if __name__ == "__main__":
     username = sys.argv[1]
-    password = sys.argv[2]
-    database_name = sys.argv[3]
+    pwd = sys.argv[2]
+    db_name = sys.argv[3]
 
-    db_connection_string = "mysql://{username}:{password}@localhost:3306/{database_name}"
-    db_connection_string = db_connection_string.format(username=username, password=password, database_name=database_name)
+    db_connection_string = "mysql://{username}:{pwd}@localhost:3306/{db_name}"
+    db_connection_string = db_connection_string.format(
+        username=username, pwd=pwd, db_name=db_name)
 
     engine = create_engine(db_connection_string)
     Base.metadata.bind = engine
@@ -30,4 +31,3 @@ if __name__ == "__main__":
 
     for city in cities:
         print("{}: {} -> {}".format(city.id, city.name, city.state.name))
-
