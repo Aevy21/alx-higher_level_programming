@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-This script takes a URL as input, sends a request and displays the body of the response.
+A script that takes a URL as input, sends a request and displays the body of the response.
 """
 
 import requests
@@ -13,6 +13,6 @@ if __name__ == "__main__":
     response = requests.get(url)
 
     if response.status_code >= 400:
-        print("Error code:" ,response.status_code)
+        print("Error code:", response.status_code)
     else:
         print(response.text)
