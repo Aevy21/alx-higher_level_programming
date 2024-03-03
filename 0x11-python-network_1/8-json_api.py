@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
 """
-A script that takes a letter as input, sends a POST request to url with the letter as a parameter"""
+A script that takes a letter as input, sends a POST request to url with the letter as a parameter
+"""
 
 import requests
 import sys
@@ -14,7 +15,7 @@ if __name__ == "__main__":
 
     payload = {'q': q}
     url = 'http://0.0.0.0:5000/search_user'
-    
+
     response = requests.post(url, data=payload)
 
     try:
