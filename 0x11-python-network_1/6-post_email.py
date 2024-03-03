@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-This script takes a URL and an email address as input, sends a POST request to the URL"""
+A script takes a URL and an email as input, sends a POST request to the URL"""
 
 import requests
 import sys
