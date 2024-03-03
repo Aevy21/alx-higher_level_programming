@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-This script fetches the status from https://alx-intranet.hbtn.io/status using the requests package.
+This script fetches the status from  using the requests package.
 """
 
 import requests

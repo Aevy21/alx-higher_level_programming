@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 
 """
-This script takes a URL and an email as input, sends a POST request to the URL with \
-        the email as a parameter, and displays the body of the response (decoded in utf-8).
+This script takes a URL and an email as input, sends a POST request to the URL.
 """
 
 

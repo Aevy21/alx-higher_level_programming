@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-This script fetches the status from https://alx-intranet.hbtn.io/status using urllib.
+This script fetches the url status  using urllib.
 """
 
 
