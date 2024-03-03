@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-This script takes a letter as input, sends a POST request to http://0.0.0.0:5000/search_user with the letter as a parameter"""
+A script that takes a letter as input, sends a POST request to url with the letter as a parameter"""
 
 import requests
 import sys
