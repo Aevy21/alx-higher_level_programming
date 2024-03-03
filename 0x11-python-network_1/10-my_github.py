@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-A script takes GitHub username and access token as input and uses the GitHub API to display the user's id.
+A script that uses GitHub API to display the user's id.
 """
 
 import requests
@@ -16,4 +16,3 @@ if __name__ == "__main__":
     response = requests.get(url, auth=(username, password))
     user_info = response.json()
     print(user_info.get('id'))
-        
