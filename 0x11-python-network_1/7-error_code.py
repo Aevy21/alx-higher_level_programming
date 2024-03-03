@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-A script that takes a URL as input, sends a request and displays the body of the response.
+Script that takes a URL as input, sends a request and displays the body of the response.
 """
 
 import requests
