@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-This script takes a URL as input, sends a request , and   displays the value of the X-Request-Id variable found in the header of the response.
+This script takes a URL as input, sends a request , and   displays the value .
 """
 
 
