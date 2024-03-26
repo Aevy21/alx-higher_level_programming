@@ -20,6 +20,12 @@ request.get(apiUrl, (error, response, body) => {
     return;
   }
 
+  // Check if the request was successful (status code 200)
+  if (response.statusCode !== 200) {
+    console.error('Error:', `Status Code ${response.statusCode}`);
+    return;
+  }
+
   try {
     const filmsData = JSON.parse(body).results;
     const wedgeAntillesMovies = filmsData.filter(film =>
