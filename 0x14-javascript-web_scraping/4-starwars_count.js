@@ -25,7 +25,5 @@ request.get(apiUrl, (error, response, body) => {
     );
 
     console.log(`${wedgeAntillesMovies.length}`);
-  } catch (parseError) {
-    console.error('Error parsing JSON:', parseError);
-  }
+  } 
 });
