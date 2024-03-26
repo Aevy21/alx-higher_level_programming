@@ -9,8 +9,6 @@ if (process.argv.length < 3) {
 }
 
 const apiUrl = process.argv[2];
-
-// Character ID for Wedge Antilles
 const characterId = '18';
 
 // Make a GET request to the Star Wars API films endpoint
@@ -20,16 +18,10 @@ request.get(apiUrl, (error, response, body) => {
     return;
   }
 
-  // Check if the request was successful (status code 200)
-  if (response.statusCode !== 200) {
-    console.error('Error:', `Status Code ${response.statusCode}`);
-    return;
-  }
-
   try {
     const filmsData = JSON.parse(body).results;
     const wedgeAntillesMovies = filmsData.filter(film =>
-      film.characters.includes(`https://swapi.dev/api/people/${characterId}/`)
+      film.characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`)
     );
 
     console.log(`${wedgeAntillesMovies.length}`);
