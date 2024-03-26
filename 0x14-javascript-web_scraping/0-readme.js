@@ -15,10 +15,6 @@ fs.readFile(filePath, 'utf-8', (error, data) => {
   if (error) {
     console.error(error); // Print the error object if an error occurred
   } else {
-    // Check if file is empty
-    if (data.trim() === '') {
-      console.error('Error: File is empty.');
-    } else {
       console.log(data); // Print the file content
     }
   }
