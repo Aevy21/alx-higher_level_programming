@@ -13,7 +13,7 @@ const filePath = process.argv[2];
 // Read file asynchronously with utf-8 encoding
 fs.readFile(filePath, 'utf-8', (err, data) => {
   if (err) {
-    console.error(err); // Print the error object if an error occurred
+    console.error(err.message); // Print the error object if an error occurred
   } else {
     // Check if file is empty
     if (data.trim() === '') {
