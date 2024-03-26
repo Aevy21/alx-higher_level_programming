@@ -14,14 +14,9 @@ const apiUrl = process.argv[2];
 const characterId = '18';
 
 // Make a GET request to the Star Wars API films endpoint
-request.get(apiUrl, (error, response, body) => {
+request.get(apiUrl, (error, body) => {
   if (error) {
     console.error('Error:', error);
-    return;
-  }
-
-  if (response.statusCode !== 200) {
-    console.error('Error:', response.statusCode, response.statusMessage);
     return;
   }
 
