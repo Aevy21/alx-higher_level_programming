@@ -14,7 +14,7 @@ const apiUrl = process.argv[2];
 const characterId = '18';
 
 // Make a GET request to the Star Wars API films endpoint
-request.get(apiUrl, (error, body) => {
+request.get(apiUrl, (error, response, body) => {
   if (error) {
     console.error('Error:', error);
     return;
@@ -23,7 +23,7 @@ request.get(apiUrl, (error, body) => {
   try {
     const filmsData = JSON.parse(body).results;
     const wedgeAntillesMovies = filmsData.filter(film =>
-      film.characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`)
+      film.characters.includes(`https://swapi.dev/api/people/${characterId}/`)
     );
 
     console.log(`${wedgeAntillesMovies.length}`);
