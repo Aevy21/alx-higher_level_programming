@@ -18,14 +18,15 @@ request.get(apiUrl, (error, response, body) => {
     return;
   }
 
-  try {
-    const filmsData = JSON.parse(body).results;
-    const wedgeAntillesMovies = filmsData.filter(film =>
-      film.characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`)
-    );
+  if (response.statusCode !== 200) {
+    console.error('Error:', `Status Code ${response.statusCode}`);
+    return;
   }
-    {
-    console.log(`${wedgeAntillesMovies.length}`);
-  }
-}
+
+  const filmsData = JSON.parse(body).results;
+  const wedgeAntillesMovies = filmsData.filter(film =>
+    film.characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`)
+  );
+
+  console.log(`${wedgeAntillesMovies.length}`);
 });
