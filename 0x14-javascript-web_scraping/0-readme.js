@@ -19,8 +19,8 @@ fs.readFile(filePath, 'utf-8', (err, data) => {
     if (data.trim() === '') {
       console.error('Error: File is empty.');
     } else {
-      console.log('File content:');
       console.log(data); // Print the file content
     }
   }
 });
+
