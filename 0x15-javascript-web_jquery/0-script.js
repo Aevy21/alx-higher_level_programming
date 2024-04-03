@@ -1,5 +1,8 @@
-// Use jQuery to ensure DOM is ready
-$(document).ready(function() {
-    // Select the header element and update text color to red (#FF0000)
-    $("header").css("color", "#FF0000");
+// Wait for the DOM content to be fully loaded
+document.addEventListener("DOMContentLoaded", function() {
+    // Select the header element
+    const headerElement = document.querySelector("header");
+
+    // Update text color to red (#FF0000)
+    headerElement.style.color = "#FF0000";
 });
